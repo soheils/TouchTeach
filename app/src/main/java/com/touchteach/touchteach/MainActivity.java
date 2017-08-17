@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         Reg =  findViewById(R.id.reg);
         Log =  findViewById(R.id.log);
         Backendless.setUrl( Defaults.SERVER_URL );
@@ -42,10 +43,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        TextView label = new TextView(this);
-        label.setText("Hello world!");
-
-        setContentView(label);
         Reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

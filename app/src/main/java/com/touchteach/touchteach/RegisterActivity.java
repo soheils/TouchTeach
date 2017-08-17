@@ -82,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void handleFault(BackendlessFault fault) {
                         bar.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getApplicationContext(),"Registration unsuccessful, please check your network")
+                        Toast.makeText(getApplicationContext(),"Registration unsuccessful, please check your network",Toast.LENGTH_SHORT);
                     }
                 });
             }

@@ -21,5 +21,7 @@ public class Users {
     {
         email = user.getEmail();
         fname = user.getProperty("fname").toString();
+        lname = user.getProperty("lname").toString();
+
     };
 }
