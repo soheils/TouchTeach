@@ -20,11 +20,11 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Reg = (Button) findViewById(R.id.reg);
-        Log = (Button) findViewById(R.id.log);
+        Reg =  findViewById(R.id.reg);
+        Log =  findViewById(R.id.log);
         Backendless.setUrl( Defaults.SERVER_URL );
         Backendless.initApp( getApplicationContext(), Defaults.APPLICATION_ID, Defaults.API_KEY );
-        if(BackendlessUser.ID_KEY != ""){
+        if (Backendless.UserService.CurrentUser().getUserId() != null) {
             startActivity(new Intent(getApplicationContext(),DashBoard.class));
         }
         HashMap testObject = new HashMap<>();
