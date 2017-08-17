@@ -18,4 +18,15 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <!--start register resource-->
+    <string name="register_et_name">نام</string>
+    <string name="register_et_last_name">نام خانوادگی</string>
+    <string name="register_ed_birthday">تاریخ تولد</string>
+    <string name="register_et_email">ایمیل</string>
+    <!--end register resource-->
+
+    <string name="men">مرد</string>
+    <string name="women">زن</string>
+    <string name="password">رمز</string>
+    <string name="mellicode">کد ملی</string>
 </resources>
