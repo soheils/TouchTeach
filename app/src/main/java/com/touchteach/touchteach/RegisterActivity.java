@@ -16,6 +16,7 @@ import com.backendless.BackendlessUser;
 public class RegisterActivity extends AppCompatActivity {
     private String lname,fname,gender,birthday,email,password,mellicode;
     private Button register;
+    public BackendlessUser currentuser;
     private void assign(){
         lname =  findViewById(R.id.lname).toString();
         fname = findViewById(R.id.fname).toString();
@@ -30,11 +31,16 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         assign();
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                currentuser = new BackendlessUser();
+                currentuser.setEmail(email);
+                currentuser.setPassword(password);
+                currentuser.setProperty("fname",fname);
             }
         });
 
