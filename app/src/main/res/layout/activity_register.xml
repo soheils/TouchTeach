@@ -10,5 +10,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.touchteach.touchteach.RegisterActivity">
     <!--TODO tamam edittext haye tarif shode dar file java sakhte shavand-->
-    <!--TODO yek progressbar sakhte shavad-->
+    <!--TODO yek progressbar sakhte shavad ba id bar-->
+    <!--TODO lname edittext-->
+
+    <!--TODO fname edittext-->
+    <!--TODO gender-->
+    <!--TODO birthday-->
+    <!--TODO email-->
+    <!--TODO password-->
+    <!--TODO mellicode-->
+    <!--TODO button id register-->
+    <!--TODO progress bar invisible-->
+    <!--TODO zibasazi layout-->
 </RelativeLayout>
