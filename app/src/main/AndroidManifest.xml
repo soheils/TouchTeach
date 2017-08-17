@@ -3,7 +3,7 @@
     package="com.touchteach.touchteach">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="26" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +20,11 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DashBoard" />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
