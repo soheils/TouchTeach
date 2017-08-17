@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TouchTeach.iml" filepath="$PROJECT_DIR$/TouchTeach.iml" />
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/TouchTeach2.iml" filepath="$PROJECT_DIR$/TouchTeach2.iml" />
-=======
->>>>>>> 3595a1252fe7b2faa076d0ada168743773af1957
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
