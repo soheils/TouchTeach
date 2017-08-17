@@ -2,4 +2,7 @@
     <string name="app_name">TouchTeach</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="firstActivityWellcome">به تاچ تیچ خوش آمدید</string>
+    <string name="mainActivityRegister">ثبت نام</string>
+    <string name="mainActivityLogin">ورود</string>
 </resources>
