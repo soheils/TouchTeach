@@ -9,5 +9,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.touchteach.touchteach.DashBoard">
-
+    <!--TODO Sakhte Shavad :P-->
+    <!--TODO layout ro baham besazim, bad berim be sooye logic moonde, ya taghsim kar konim?-->
 </RelativeLayout>
