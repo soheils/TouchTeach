@@ -36,15 +36,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:id="@+id/register_rg_gender">
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:text="@string/men"
+            android:id="@+id/register_rb_male"
             android:checked="true"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:id="@+id/register_rb_female"
             android:text="@string/women" />
 
     </RadioGroup>
@@ -79,4 +82,5 @@
         android:text="@string/mainActivityRegister"
         android:id="@+id/register_bt_register" />
     <!--TODO zibasazi layout-->
+    <!--WOW kheili ghashang shode ta inja-->
 </LinearLayout>
