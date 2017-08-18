@@ -56,12 +56,12 @@ public class RegisterActivity extends AppCompatActivity {
         //TODO all messages must be in Persian
         lname = ((EditText) findViewById(R.id.register_et_last_name)).getText().toString();
         if(lname.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Last Name cannot be empty", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Last Name cannot be empty", Toast.LENGTH_SHORT).show();
             return false;
         }
         fname = ((EditText) findViewById(R.id.register_et_name)).getText().toString();
         if(fname.isEmpty()){
-            Toast.makeText(getApplicationContext(),"First Name cannot be empty",Toast.LENGTH_SHORT);
+            Toast.makeText(this,"First Name cannot be empty",Toast.LENGTH_SHORT).show();
             return false;
         }
        int handle = ((RadioGroup) findViewById(R.id.register_rg_gender)).getCheckedRadioButtonId();
@@ -71,32 +71,32 @@ public class RegisterActivity extends AppCompatActivity {
             gender = "female";
 
         if(gender.isEmpty()){
-            Toast.makeText(getApplicationContext(),"gender cannot be empty",Toast.LENGTH_SHORT);
+            Toast.makeText(this,"gender cannot be empty",Toast.LENGTH_SHORT).show();
             return false;
         }
         birthday = ((EditText) findViewById(R.id.register_et_birthday)).getText().toString();
         if(birthday.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Birthday cannot be empty", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Birthday cannot be empty", Toast.LENGTH_SHORT).show();
             return false;
         }
         email =((EditText) findViewById(R.id.register_et_email)).getText().toString();
         if(email.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "email cannot be empty", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "email cannot be empty", Toast.LENGTH_SHORT).show();
             return false;
         }
         password = ((EditText) findViewById(R.id.register_et_password)).getText().toString();
         if(password.isEmpty() || password.length() < 9){
-            Toast.makeText(getApplicationContext(),"Password is too short",Toast.LENGTH_SHORT);
+            Toast.makeText(this,"Password is too short",Toast.LENGTH_SHORT).show();
             return false;
         }
         mellicode = ((EditText) findViewById(R.id.register_et_mellicode)).getText().toString();
         if(mellicode.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Mellicode cannot be empty", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Mellicode cannot be empty", Toast.LENGTH_SHORT).show();
             return false;
         }
         bar = (ProgressBar) findViewById(R.id.register_pb_loading);
         return true;
-    };
+    }
     private void register(){
         currentuser = new BackendlessUser();
         currentuser.setEmail(email);
@@ -118,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void handleFault(BackendlessFault fault) {
                 bar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getApplicationContext(),"Registration unsuccessful, please check your network",Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(),"Registration unsuccessful, please check your network",Toast.LENGTH_SHORT).show();
             }
         });
     }
