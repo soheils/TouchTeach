@@ -21,6 +21,7 @@ import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 
 public class RegisterActivity extends AppCompatActivity {
+
     private String lname,fname,gender,birthday,email,password,mellicode;
     private Button register;
     private BackendlessUser currentuser;
@@ -85,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
         password = ((EditText) findViewById(R.id.register_et_password)).getText().toString();
-        if(password.isEmpty() || password.length() < 9){
+        if(password.isEmpty() || password.length() < 8){
             Toast.makeText(this,"Password is too short",Toast.LENGTH_SHORT).show();
             return false;
         }
