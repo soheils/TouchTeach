@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context="com.touchteach.touchteach.LoginActivity">
 
-    <!--TODO ZibaSazi shavad-->
 
     <include layout="@layout/content_login"
         android:layout_width="match_parent"

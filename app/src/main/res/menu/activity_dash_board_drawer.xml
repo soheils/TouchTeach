@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <!--TODO icon ha dorost shavand-->
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/slide_item_home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="@string/slide_item_home" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/slide_item_class_group"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="@string/slide_item_class_group" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/slide_item_class_request"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="@string/slide_item_class_request" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title=""
+        android:visible="true">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/slide_item_create_class"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/slide_item_create_class" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/slide_item_requirements"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="@string/slide_item_requirements"/>
         </menu>
     </item>
-
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/slide_item_money"
+                android:title="@string/slide_item_money"/>
+            <item
+                android:id="@+id/slide_item_share"
+                android:title="@string/slide_item_share"/>
+        </menu>
+    </item>
 </menu>

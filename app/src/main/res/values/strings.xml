@@ -38,4 +38,12 @@
     <string name="login_et_user_name">نام کاربری</string>
     <string name="login_et_password">رمز عبور</string>
     <string name="login_bt_enter">ورود</string>
+    <string name="slide_tv_user_name">نام و نام خوادگی</string>
+    <string name="slide_item_home">خانه</string>
+    <string name="slide_item_class_group">دسته بندی کلاس ها</string>
+    <string name="slide_item_class_request">درخواست کلاس</string>
+    <string name="slide_item_create_class">ایجاد کلاس</string>
+    <string name="slide_item_requirements">نیازمندی ها</string>
+    <string name="slide_item_money">کیف پول</string>
+    <string name="slide_item_share">ارسال به دوستان</string>
 </resources>
