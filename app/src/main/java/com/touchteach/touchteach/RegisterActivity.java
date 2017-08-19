@@ -55,46 +55,54 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private boolean assignAndCheck(){
         //TODO all messages must be in Persian
+        //TODO delete toast
+
         lname = ((EditText) findViewById(R.id.register_et_last_name)).getText().toString();
         if(lname.isEmpty()) {
             Toast.makeText(this, "Last Name cannot be empty", Toast.LENGTH_SHORT).show();
             return false;
         }
+
         fname = ((EditText) findViewById(R.id.register_et_name)).getText().toString();
         if(fname.isEmpty()){
             Toast.makeText(this,"First Name cannot be empty",Toast.LENGTH_SHORT).show();
             return false;
         }
-       int handle = ((RadioGroup) findViewById(R.id.register_rg_gender)).getCheckedRadioButtonId();
+
+        int handle = ((RadioGroup) findViewById(R.id.register_rg_gender)).getCheckedRadioButtonId();
         if(handle == R.id.register_rb_male)
             gender = "male";
-        else
+        else if(handle == R.id.register_rb_female)
             gender = "female";
-
-        if(gender.isEmpty()){
+        else{
             Toast.makeText(this,"gender cannot be empty",Toast.LENGTH_SHORT).show();
             return false;
         }
+
         birthday = ((EditText) findViewById(R.id.register_et_birthday)).getText().toString();
         if(birthday.isEmpty()) {
             Toast.makeText(this, "Birthday cannot be empty", Toast.LENGTH_SHORT).show();
             return false;
         }
+
         email =((EditText) findViewById(R.id.register_et_email)).getText().toString();
         if(email.isEmpty()) {
             Toast.makeText(this, "email cannot be empty", Toast.LENGTH_SHORT).show();
             return false;
         }
+
         password = ((EditText) findViewById(R.id.register_et_password)).getText().toString();
         if(password.isEmpty() || password.length() < 8){
             Toast.makeText(this,"Password is too short",Toast.LENGTH_SHORT).show();
             return false;
         }
+
         mellicode = ((EditText) findViewById(R.id.register_et_mellicode)).getText().toString();
         if(mellicode.isEmpty()) {
             Toast.makeText(this, "Mellicode cannot be empty", Toast.LENGTH_SHORT).show();
             return false;
         }
+
         bar = (ProgressBar) findViewById(R.id.register_pb_loading);
         return true;
     }
@@ -123,5 +131,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 }

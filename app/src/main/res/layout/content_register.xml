@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -46,6 +47,9 @@
             android:text="@string/men"
             android:id="@+id/register_rb_male"
             android:checked="true"/>
+        <Space
+            android:layout_width="@dimen/radio_button_space"
+            android:layout_height="match_parent" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="45dp"
@@ -74,14 +78,15 @@
         android:hint="@string/password"
         android:id="@+id/register_et_password"
         android:maxLines="1"/>
+
     <EditText
+        android:id="@+id/register_et_mellicode"
         android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height"
+        android:hint="@string/mellicode"
         android:inputType="numberDecimal"
         android:maxLength="10"
-        android:hint="@string/mellicode"
-        android:id="@+id/register_et_mellicode"
-        android:maxLines="1"/>
+        android:maxLines="1" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"
