@@ -24,12 +24,14 @@
                 android:hint="@string/register_et_name"
                 android:id="@+id/register_et_name"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height" />
+                android:layout_height="@dimen/edit_text_height"
+                android:maxLines="1"/>
             <EditText
                 android:hint="@string/register_et_last_name"
                 android:id="@+id/register_et_last_name"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height" />
+                android:layout_height="@dimen/edit_text_height"
+                android:maxLines="1"/>
         </LinearLayout>
     </LinearLayout>
     <RadioGroup
@@ -56,31 +58,33 @@
         android:hint="@string/register_ed_birthday"
         android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height"
-        android:inputType="datetime"/>
+        android:inputType="datetime"
+        android:maxLines="1"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height"
         android:inputType="textEmailAddress"
         android:hint="@string/register_et_email"
-        android:id="@+id/register_et_email"/>
+        android:id="@+id/register_et_email"
+        android:maxLines="1"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height"
         android:inputType="textPassword"
         android:hint="@string/password"
-        android:id="@+id/register_et_password"/>
+        android:id="@+id/register_et_password"
+        android:maxLines="1"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height"
         android:inputType="numberDecimal"
         android:maxLength="10"
         android:hint="@string/mellicode"
-        android:id="@+id/register_et_mellicode"/>
+        android:id="@+id/register_et_mellicode"
+        android:maxLines="1"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"
         android:text="@string/mainActivityRegister"
         android:id="@+id/register_bt_register" />
-    <!--TODO zibasazi layout-->
-    <!--WOW kheili ghashang shode ta inja-->
 </LinearLayout>

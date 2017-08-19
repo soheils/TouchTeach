@@ -22,18 +22,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DashBoard" />
+        <!--2 bar tarif shode bod-->
+        <!--<activity android:name=".DashBoard" />-->
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".DashBoard"
             android:label="@string/title_activity_dash_board"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

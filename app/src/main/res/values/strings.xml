@@ -35,4 +35,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="login_et_user_name">نام کاربری</string>
+    <string name="login_et_password">رمز عبور</string>
+    <string name="login_bt_enter">ورود</string>
 </resources>
