@@ -39,11 +39,11 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        (findViewById(R.id.email_sign_in_button)).setOnClickListener(new View.OnClickListener() {
+        (findViewById(R.id.login_bt_login)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                email = ((EditText) findViewById(R.id.email)).getText().toString();
-                password = ((EditText)findViewById(R.id.password)).getText().toString();
+                email = ((EditText) findViewById(R.id.login_et_user_name)).getText().toString();
+                password = ((EditText)findViewById(R.id.login_et_password)).getText().toString();
                 if (email.isEmpty())
                     Toast.makeText(getApplicationContext(),"ایمیل نمی تواند خالی باشد",Toast.LENGTH_SHORT).show();
                 else if(password.isEmpty() || password.length() < 8)
