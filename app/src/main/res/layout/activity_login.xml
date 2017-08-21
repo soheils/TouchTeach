@@ -4,11 +4,14 @@
     android:layout_height="match_parent"
     tools:context="com.touchteach.touchteach.LoginActivity">
 
-
-    <include layout="@layout/content_login"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center">
+        <include layout="@layout/content_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
     <ProgressBar
         android:id="@+id/login_pd_loading"
         android:layout_width="@dimen/progress_bar_length"

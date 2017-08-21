@@ -88,6 +88,7 @@ public class DashBoard extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -99,6 +100,8 @@ public class DashBoard extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        //TODO handle slider
         return true;
     }
 }

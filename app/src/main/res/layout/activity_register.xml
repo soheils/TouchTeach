@@ -6,9 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.touchteach.touchteach.RegisterActivity"
     android:layoutDirection="rtl">
-    <include layout="@layout/content_register"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/content_register"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+    </ScrollView>
     <ProgressBar
         android:id="@+id/register_pb_loading"
         android:layout_width="@dimen/progress_bar_length"
