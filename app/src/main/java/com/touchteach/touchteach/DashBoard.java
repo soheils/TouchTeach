@@ -61,6 +61,8 @@ public class DashBoard extends AppCompatActivity
             }
         });
         currentuser = Backendless.UserService.CurrentUser();
+        //todo nahve taghire text view
+//        ((TextView)((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0).findViewById(R.id.slide_tv_user_name)).setText("Hello");
 
     }
 
