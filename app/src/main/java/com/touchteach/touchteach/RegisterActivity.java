@@ -39,7 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
             {
                 Toast.makeText(getApplicationContext(),"لاگین موفق نبود، لطفا اینترنت خود را بررسی کرده و دوباره تلاش کنید", Toast.LENGTH_SHORT).show();
             }
-            // placeholder
         };
 
         Backendless.UserService.login( email, password , callback, true );
