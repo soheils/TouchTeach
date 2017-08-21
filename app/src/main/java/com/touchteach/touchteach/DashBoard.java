@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.touchteach.touchteach.tools.SliderMethods;
 import com.touchteach.touchteach.tools.Users;
 
 import com.backendless.Backendless;
@@ -23,7 +24,8 @@ import com.backendless.BackendlessUser;
 
 public class DashBoard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public BackendlessUser currentuser;
+    private BackendlessUser currentuser;
+    private Users StoredUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +63,10 @@ public class DashBoard extends AppCompatActivity
             }
         });
         currentuser = Backendless.UserService.CurrentUser();
-        //todo nahve taghire text view
-//        ((TextView)((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0).findViewById(R.id.slide_tv_user_name)).setText("Hello");
-
+        StoredUser = new Users(currentuser);
+        NavigationView view = ((NavigationView) findViewById(R.id.nav_view));
+        SliderMethods methods = new SliderMethods(view,StoredUser);
+        methods.ExecuteSetterMethods(R.id.slide_tv_user_name,R.id.slide_item_home,R.id.slide_item_class_group,R.id.activity_request_classes);
     }
 
     @Override

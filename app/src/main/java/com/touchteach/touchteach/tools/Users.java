@@ -15,70 +15,56 @@ import java.util.HashMap;
  */
 
 public class Users {
-    public String email,fname,lname,id;
-    public String[] subjects,relations, classes;
+    private String email,fname,lname,age,subjects,id,gender;
+    private String[] messages, relations, classes;
 
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getFname() {
         return fname;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
     public String getLname() {
         return lname;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public String getAge() {
+        return age;
+    }
+
+    public String getSubjects() {
+        return subjects;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getGender() {
+        return gender;
     }
 
-    public String[] getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(String[] subjects) {
-        this.subjects = subjects;
+    public String[] getMessages() {
+        return messages;
     }
 
     public String[] getRelations() {
         return relations;
     }
 
-    public void setRelations(String[] relations) {
-        this.relations = relations;
-    }
-
     public String[] getClasses() {
         return classes;
     }
 
-    public void setClasses(String[] classes) {
-        this.classes = classes;
-    }
-
     public Users(BackendlessUser user)
     {
-        email = user.getEmail();
-        fname = user.getProperty("fname").toString();
-        lname = user.getProperty("lname").toString();
+        this.id = user.getUserId();
+        this.email = user.getEmail();
+        this.fname = user.getProperty("fname").toString();
+        this.lname = user.getProperty("lname").toString();
+        this.gender = user.getProperty("gender").toString();
 
     };
 }

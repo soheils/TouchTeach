@@ -20,6 +20,7 @@ import com.touchteach.touchteach.backendless.Defaults;
 public class MainActivity extends Activity {
     private Button Reg,Log;
     protected boolean handle;
+    private BackendlessUser currentuser;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,24 +31,7 @@ public class MainActivity extends Activity {
           // user login is available, skip the login activity/login form }
         Backendless.setUrl( Defaults.SERVER_URL );
         Backendless.initApp( getApplicationContext(), Defaults.APPLICATION_ID, Defaults.API_KEY );
-        String userToken = UserTokenStorageFactory.instance().getStorage().get();
-        Backendless.UserService.isValidLogin(new AsyncCallback<Boolean>() {
-            @Override
-            public void handleResponse(Boolean response) {
-                handle = response;
-            }
-
-            @Override
-            public void handleFault(BackendlessFault fault) {
-
-            }
-        });
-        if( handle){
-            startActivity(new Intent(getApplicationContext(),DashBoard.class));
-            finish();
-        }
-
-
+        String currentUserObjectId = Backendless.UserService.loggedInUser();
         Reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

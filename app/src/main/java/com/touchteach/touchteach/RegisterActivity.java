@@ -78,15 +78,16 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean assignAndCheck(){
         //TODO delete toast
 
-        lname = ((EditText) findViewById(R.id.register_et_last_name)).getText().toString();
-        if(lname.isEmpty()) {
-            Toast.makeText(this, "Last Name cannot be empty", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+
 
         fname = ((EditText) findViewById(R.id.register_et_name)).getText().toString();
         if(fname.isEmpty()){
             Toast.makeText(this,"First Name cannot be empty",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        lname = ((EditText) findViewById(R.id.register_et_last_name)).getText().toString();
+        if(lname.isEmpty()) {
+            Toast.makeText(this, "Last Name cannot be empty", Toast.LENGTH_SHORT).show();
             return false;
         }
 

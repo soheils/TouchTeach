@@ -46,4 +46,5 @@
     <string name="slide_item_requirements">نیازمندی ها</string>
     <string name="slide_item_money">کیف پول</string>
     <string name="slide_item_share">ارسال به دوستان</string>
+    <string name="title_activity_class_search">ClassSearch</string>
 </resources>
