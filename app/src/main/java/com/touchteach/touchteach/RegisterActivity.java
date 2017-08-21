@@ -16,16 +16,37 @@ import android.widget.Toast;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.touchteach.touchteach.tools.Users;
-
+import com.touchteach.touchteach.LoginActivity;
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 
-public class RegisterActivity extends AppCompatActivity {
+import java.lang.reflect.Array;
 
+public class RegisterActivity extends AppCompatActivity {
+    private void loginUserAsync(String email, String password)
+    {
+        AsyncCallback<BackendlessUser> callback = new AsyncCallback<BackendlessUser>()
+        {
+            @Override
+            public void handleResponse( BackendlessUser loggedInUser )
+            {
+                startActivity(new Intent(getApplicationContext(),DashBoard.class));
+            }
+
+            @Override
+            public void handleFault( BackendlessFault backendlessFault )
+            {
+                Toast.makeText(getApplicationContext(),"لاگین موفق نبود، لطفا اینترنت خود را بررسی کرده و دوباره تلاش کنید", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        Backendless.UserService.login( email, password , callback, true );
+    }
     private String lname,fname,gender,birthday,email,password,mellicode;
     private Button register;
     private BackendlessUser currentuser;
     private ProgressBar bar;
+    public String id;
     private Users user;
 
     public BackendlessUser getCurrentuser() {
@@ -54,7 +75,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
     private boolean assignAndCheck(){
-        //TODO all messages must be in Persian
         //TODO delete toast
 
         lname = ((EditText) findViewById(R.id.register_et_last_name)).getText().toString();
@@ -114,13 +134,15 @@ public class RegisterActivity extends AppCompatActivity {
         currentuser.setProperty("lname",lname);
         currentuser.setProperty("gender",gender);
         currentuser.setProperty("bday",birthday);
-        currentuser.setProperty("mellicode",mellicode);
+        int[] array = new int[3];
+        array[1] = 2;
+        currentuser.setProperty("array",array);
         user = new Users(currentuser);
         Backendless.UserService.register(currentuser, new AsyncCallback<BackendlessUser>() {
             @Override
             public void handleResponse(BackendlessUser response) {
                 bar.setVisibility(View.INVISIBLE);
-                startActivity(new Intent(getApplicationContext(),DashBoard.class));
+                loginUserAsync(email,password);
                 finish();
             }
 

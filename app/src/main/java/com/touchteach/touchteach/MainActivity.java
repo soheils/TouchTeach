@@ -13,21 +13,39 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.backendless.persistence.local.UserTokenStorageFactory;
 import com.touchteach.touchteach.backendless.Defaults;
 
 public class MainActivity extends Activity {
     private Button Reg,Log;
+    protected boolean handle;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Reg = (Button)  findViewById(R.id.reg);
         Log = (Button)  findViewById(R.id.log);
+
+          // user login is available, skip the login activity/login form }
         Backendless.setUrl( Defaults.SERVER_URL );
         Backendless.initApp( getApplicationContext(), Defaults.APPLICATION_ID, Defaults.API_KEY );
-//        if (Backendless.UserService.CurrentUser().getUserId() != null) {
-//            startActivity(new Intent(getApplicationContext(),DashBoard.class));
-//        }
+        String userToken = UserTokenStorageFactory.instance().getStorage().get();
+        Backendless.UserService.isValidLogin(new AsyncCallback<Boolean>() {
+            @Override
+            public void handleResponse(Boolean response) {
+                handle = response;
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+
+            }
+        });
+        if( handle){
+            startActivity(new Intent(getApplicationContext(),DashBoard.class));
+            finish();
+        }
 
 
         Reg.setOnClickListener(new View.OnClickListener() {
