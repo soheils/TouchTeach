@@ -36,7 +36,7 @@ public class SliderMethods extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),EditProfile.class));
             }
         });
-
+//    TODO khob chetor be baghie item haye slider dastrasi dashte basham?
     }
     public void setHome(int id){
         MenuItem item =  navigationView.getHeaderView(1).findViewById(id);
