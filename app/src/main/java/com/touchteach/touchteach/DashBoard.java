@@ -65,8 +65,8 @@ public class DashBoard extends AppCompatActivity
         currentuser = Backendless.UserService.CurrentUser();
         StoredUser = new Users(currentuser);
         NavigationView view = ((NavigationView) findViewById(R.id.nav_view));
-        SliderMethods methods = new SliderMethods(view,StoredUser);
-        methods.ExecuteSetterMethods(R.id.slide_tv_user_name,R.id.slide_item_home,R.id.slide_item_class_group,R.id.activity_request_classes);
+//        SliderMethods methods = new SliderMethods(view,StoredUser);
+//        methods.ExecuteSetterMethods(R.id.slide_tv_user_name,R.id.slide_item_home,R.id.slide_item_class_group,R.id.activity_request_classes);
     }
 
     @Override

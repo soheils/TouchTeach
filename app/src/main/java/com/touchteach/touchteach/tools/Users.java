@@ -9,14 +9,32 @@ import com.backendless.exceptions.BackendlessFault;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
 
 /**
  * Created by Soheil on 8/17/2017.
  */
 
 public class Users {
+
     private String email,fname,lname,age,subjects,id,gender;
-    private String[] messages, relations, classes;
+    private String cash, Bio;
+
+    public String getBio() {
+        return Bio;
+    }
+
+    public void setBio(String bio) {
+        Bio = bio;
+    }
+
+    public String getCash() {
+        return cash;
+    }
+
+    public void setCash(String cash) {
+        this.cash = cash;
+    }
 
     public String getEmail() {
         return email;
@@ -37,7 +55,7 @@ public class Users {
     public String getSubjects() {
         return subjects;
     }
-
+    public Stack[] messages,classes;
     public String getId() {
         return id;
     }
@@ -46,17 +64,6 @@ public class Users {
         return gender;
     }
 
-    public String[] getMessages() {
-        return messages;
-    }
-
-    public String[] getRelations() {
-        return relations;
-    }
-
-    public String[] getClasses() {
-        return classes;
-    }
 
     public Users(BackendlessUser user)
     {
