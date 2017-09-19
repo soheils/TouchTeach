@@ -100,17 +100,18 @@ public class SqlLiteHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    // Getting single contact
-    public Contact getContact(int id) {}
-
-    // Getting All Contacts
-    public List<Contact> getAllContacts() {}
-
-    // Getting contacts Count
-    public int getContactsCount() {}
-    // Updating single contact
-    public int updateContact(Contact contact) {}
-
-    // Deleting single contact
-    public void deleteContact(Contact contact) {}
+//    todo uncomment
+//    // Getting single contact
+//    public Contact getContact(int id) {}
+//
+//    // Getting All Contacts
+//    public List<Contact> getAllContacts() {}
+//
+//    // Getting contacts Count
+//    public int getContactsCount() {}
+//    // Updating single contact
+//    public int updateContact(Contact contact) {}
+//
+//    // Deleting single contact
+//    public void deleteContact(Contact contact) {}
 }

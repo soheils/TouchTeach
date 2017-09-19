@@ -1,8 +1,10 @@
 package com.touchteach.touchteach;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.accessibility.AccessibilityManagerCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,11 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
-import com.touchteach.touchteach.tools.SliderMethods;
 import com.touchteach.touchteach.tools.Users;
 
 import com.backendless.Backendless;
@@ -94,6 +95,7 @@ public class DashBoard extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -105,6 +107,14 @@ public class DashBoard extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.slide_item_create_class:
+                Intent intent = new Intent(this, CreateClassActivity.class);
+                startActivity(intent);
+                break;
+        }
         // Handle navigation view item clicks here.
         //TODO handle slider
         return true;

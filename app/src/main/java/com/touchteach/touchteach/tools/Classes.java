@@ -13,7 +13,10 @@ public class Classes {
     private static  String Date;
     public static String Subject;
     public static String Description;
-
+//    todo add location
+//    todo add create date
+//    todo add class starting time
+//    todo add duration
     public static String getDescription() {
         return Description;
     }

@@ -41,7 +41,8 @@
             android:name=".ClassSearch"
             android:label="@string/title_activity_class_search"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RequestClasses"></activity>
+        <activity android:name=".RequestClasses" />
+        <activity android:name=".CreateClassActivity"></activity>
     </application>
 
 </manifest>

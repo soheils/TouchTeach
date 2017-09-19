@@ -65,13 +65,12 @@ public class Users {
     }
 
 
-    public Users(BackendlessUser user)
-    {
+    public Users(BackendlessUser user) {
         this.id = user.getUserId();
         this.email = user.getEmail();
         this.fname = user.getProperty("fname").toString();
         this.lname = user.getProperty("lname").toString();
         this.gender = user.getProperty("gender").toString();
 
-    };
+    }
 }

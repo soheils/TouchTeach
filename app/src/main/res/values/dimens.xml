@@ -12,5 +12,7 @@
     <dimen name="edit_text_height">45dp</dimen>
     <dimen name="progress_bar_length">40dp</dimen>
     <dimen name="radio_button_space">20dp</dimen>
-
+    <dimen name="image_view_create_activity">90dp</dimen>
+    <dimen name="fields_space_create_class">32dp</dimen>
+    <dimen name="description_height_create_class">100dp</dimen>
 </resources>

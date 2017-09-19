@@ -47,4 +47,14 @@
     <string name="slide_item_money">کیف پول</string>
     <string name="slide_item_share">ارسال به دوستان</string>
     <string name="title_activity_class_search">ClassSearch</string>
+    <string name="request_class_classname">نام کلاس</string>
+    <string name="request_class_subject_label">موضوع</string>
+    <string name="create_class_capacity">ظرفیت</string>
+    <string name="create_class_cast">قیمت</string>
+    <string name="create_class_start_date">شروع کلاس</string>
+    <string name="create_class_start_time">زمان آغاز</string>
+    <string name="create_class_duration">مدت زمان</string>
+    <string name="create_class_description">توضیحات</string>
+    <string name="create_class_create">ثبت</string>
+    <string name="create_class_count_label">تعداد جلاسات</string>
 </resources>
