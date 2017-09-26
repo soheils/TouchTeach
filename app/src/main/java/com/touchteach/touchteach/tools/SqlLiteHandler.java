@@ -5,8 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import javax.security.auth.Subject;
-
 /**
  * Created by Soheil on 8/23/2017.
  */
@@ -86,7 +84,7 @@ public class SqlLiteHandler extends SQLiteOpenHelper {
         db.insert(TableName, null, values);
         db.close();
     }
-    public void addClass(Classes newclass) {
+    public void addClass(Class newclass) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(ClassName, newclass.getClassName() ); // Contact Name
