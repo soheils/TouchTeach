@@ -99,7 +99,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/create_class_tv_start_date"
+                    android:id="@+id/create_class_tv_start_date_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fields_space_create_class"
@@ -107,15 +107,18 @@
                     app:layout_constraintTop_toBottomOf="@id/create_class_tv_cast_label"
                     app:layout_constraintLeft_toLeftOf="@id/create_class_tv_cast_label" />
 
-                <EditText
-                    android:id="@+id/create_class_ed_start_date"
+                <TextView
+                    android:id="@+id/create_class_tv_start_date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_start_date"
+                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_start_date_label"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_start_date"
-                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_start_date"
+                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_start_date_label"
+                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_start_date_label"
                     android:layout_marginRight="@dimen/fab_margin"
+                    android:onClick="clickSetDate"
+                    android:textAlignment="center"
+                    tools:text="2017/9/25"
                     />
 
                 <TextView
@@ -124,8 +127,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fields_space_create_class"
                     android:text="@string/create_class_count_label"
-                    app:layout_constraintTop_toBottomOf="@+id/create_class_tv_start_date"
-                    app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_start_date" />
+                    app:layout_constraintTop_toBottomOf="@+id/create_class_tv_start_date_label"
+                    app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_start_date_label" />
 
                 <EditText
                     android:id="@+id/create_class_ed_count"

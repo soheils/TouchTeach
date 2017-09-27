@@ -1,21 +1,21 @@
 package com.touchteach.touchteach;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.touchteach.touchteach.coustomViews.PersianDatePickerDialog;
 import com.touchteach.touchteach.databinding.ActivityCreateClassBinding;
-import com.touchteach.touchteach.tools.Class;
 
-import coustomViews.PersianTimePickerDialog;
+import com.touchteach.touchteach.coustomViews.PersianTimePickerDialog;
 
 public class CreateClassActivity extends AppCompatActivity {
 
@@ -72,6 +72,18 @@ public class CreateClassActivity extends AppCompatActivity {
                     else{
                         // todo manage it
                     }
+                }
+            }).show();
+        }
+    }
+
+    public void clickSetDate(final View view){
+        if (view instanceof TextView) {
+            new PersianDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                    ((TextView) view).setText(i + "/" + i1 + "/" + i2);
+                    //todo set max & min date
                 }
             }).show();
         }
