@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -140,7 +140,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/create_class_tv_start_time"
+                    android:id="@+id/create_class_tv_start_time_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fields_space_create_class"
@@ -148,15 +148,18 @@
                     app:layout_constraintTop_toBottomOf="@+id/create_class_tv_count_label"
                     app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_count_label" />
 
-                <EditText
-                    android:id="@+id/create_class_ed_start_time"
+                <TextView
+                    android:id="@+id/create_class_tv_start_time"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_start_time"
+                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_start_time_label"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_start_time"
-                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_start_time"
+                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_start_time_label"
+                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_start_time_label"
                     android:layout_marginRight="@dimen/fab_margin"
+                    android:textAlignment="center"
+                    android:onClick="clickSetTime"
+                    tools:text="5:55 ب.ظ"
                     />
 
                 <TextView
@@ -165,19 +168,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fields_space_create_class"
                     android:text="@string/create_class_duration"
-                    app:layout_constraintTop_toBottomOf="@+id/create_class_tv_start_time"
-                    app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_start_time" />
+                    app:layout_constraintTop_toBottomOf="@+id/create_class_tv_start_time_label"
+                    app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_start_time_label" />
 
-                <EditText
-                    android:id="@+id/create_class_ed_duration"
+                <TextView
+                    android:id="@+id/create_class_tv_duration"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
                     app:layout_constraintRight_toLeftOf="@+id/create_class_tv_duration_label"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/create_class_tv_duration_label"
                     app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_duration_label"
                     android:layout_marginRight="@dimen/fab_margin"
+                    android:onClick="clickSetTime"
+                    android:textAlignment="center"
+                    tools:text="5:55"
                     />
 
                 <TextView
