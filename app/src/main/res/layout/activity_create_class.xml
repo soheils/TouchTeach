@@ -23,6 +23,7 @@
                     android:id="@+id/create_class_imb_class_image"
                     />
                 <EditText
+                    android:id="@+id/create_class_ed_class_name"
                     android:layout_height="@dimen/edit_text_height"
                     android:layout_width="0dp"
                     app:layout_constraintRight_toLeftOf="@+id/create_class_imb_class_image"
@@ -31,7 +32,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/create_class_imb_class_image"
                     android:layout_margin="8dp"
                     android:hint="@string/request_class_classname"
-                    android:id="@+id/create_class_ed_class_name" />
+                    android:maxLines="1" />
 
                 <TextView
                     android:id="@+id/create_class_tv_subject_label"
@@ -47,14 +48,13 @@
                     android:id="@+id/create_class_sp_subject"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintHorizontal_bias="1.0"
-
                     android:layout_marginRight="@dimen/fab_margin"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_subject_label"
-                    app:layout_constraintLeft_toLeftOf="parent"
+
                     app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_subject_label"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_subject_label"
-                    />
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_subject_label"
+                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_subject_label" />
 
                 <TextView
                     android:id="@+id/create_class_tv_capacity_label"
@@ -71,6 +71,7 @@
                     android:layout_height="wrap_content"
                     android:ems="4"
                     android:inputType="numberDecimal"
+                    android:maxLines="1"
                     app:layout_constraintRight_toLeftOf="@+id/create_class_tv_capacity_label"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/create_class_tv_capacity_label"
@@ -91,6 +92,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
+                    android:maxLines="1"
                     app:layout_constraintRight_toLeftOf="@+id/create_class_tv_cast_label"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/create_class_tv_cast_label"
@@ -135,6 +137,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
+                    android:maxLines="1"
                     app:layout_constraintRight_toLeftOf="@+id/create_class_tv_count_label"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/create_class_tv_count_label"

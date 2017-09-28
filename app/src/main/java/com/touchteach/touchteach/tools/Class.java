@@ -2,20 +2,21 @@ package com.touchteach.touchteach.tools;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Soheil on 8/27/2017.
  */
 
 public class Class {
-    private String className;
+    private String title;
     private int capacity;
     private String instructor;
     private String limitations;
@@ -43,12 +44,13 @@ public class Class {
         this.subject = subject;
     }
 
-    public String getClassName() {
-        return className;
+    public String getTitle() {
+        return title;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setTitle(String title) {
+        if (title != null && !title.isEmpty())
+            this.title = title;
     }
 
     public int getCapacity() {
@@ -57,6 +59,13 @@ public class Class {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public void setCapacity(String  capacity) {
+        if (capacity != null && !capacity.isEmpty()){
+            int cap = Integer.parseInt(capacity);
+        setCapacity(cap);
+        }
     }
 
     public String getInstructor() {
@@ -92,19 +101,22 @@ public class Class {
     }
 
     public Class(String name){
-        setClassName(name);
+        setTitle(name);
     }
 
     public static void save(Class saveClass, final Context context){
-        //todo save class
-        Backendless.Data.of(Class.class).save(saveClass, new AsyncCallback<Class>() {
+        //todo complete save class
+        HashMap hashMap = new HashMap();
+        hashMap.put("title", saveClass.title);
+        Backendless.Data.of("Class").save(hashMap, new AsyncCallback<Map>() {
             @Override
-            public void handleResponse(Class response) {
-                Toast.makeText(context, "کلاس با موفقیت ذخیره شد", Toast.LENGTH_LONG).show();
+            public void handleResponse(Map response) {
+                Log.d("Touch Teach", "class saved");
             }
 
             @Override
             public void handleFault(BackendlessFault fault) {
+                Log.d("Touch Teach", "class can't save");
                 Log.d("Touch Teach", fault.toString());
             }
         });

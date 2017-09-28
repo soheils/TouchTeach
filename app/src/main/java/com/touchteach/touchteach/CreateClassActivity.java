@@ -16,6 +16,8 @@ import com.touchteach.touchteach.coustomViews.PersianDatePickerDialog;
 import com.touchteach.touchteach.databinding.ActivityCreateClassBinding;
 
 import com.touchteach.touchteach.coustomViews.PersianTimePickerDialog;
+import com.touchteach.touchteach.tools.Class;
+import com.touchteach.touchteach.tools.Subject;
 
 public class CreateClassActivity extends AppCompatActivity {
 
@@ -33,6 +35,7 @@ public class CreateClassActivity extends AppCompatActivity {
 
     private void bindView(){
         //todo bind spinner
+        Subject.load();
     }
 
     private void setViews(){
@@ -43,24 +46,17 @@ public class CreateClassActivity extends AppCompatActivity {
     }
 
     public void saveClass(View view){
-//        String className = viewBinding.createClassEdClassName.getText().toString();
-//
-//        String capacityString = viewBinding.createClassEdCapacity.getText().toString();
-//        int capacity = Integer.parseInt(capacityString);
-//
-//        String costString = viewBinding.createClassEdCost.getText().toString();
-//        int cost = Integer.parseInt(costString);
-//
-//
-//        Class createdClass = new Class(className);
-//
-//        createdClass.setCapacity(capacity);
-//        createdClass.setCost(cost);
-//
-//        createdClass.save(this);
 
-//        startActivityForResult(new Intent(this, SetClockActivity.class), );
+        String className = viewBinding.createClassEdClassName.getText().toString();
+        String capacity = viewBinding.createClassEdCapacity.getText().toString();
+
+        Class saveClass = new Class(className);
+
+
+
+        saveClass.save(this);
     }
+
     public void clickSetTime(final View view){
         if (view instanceof TextView){
             new PersianTimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {

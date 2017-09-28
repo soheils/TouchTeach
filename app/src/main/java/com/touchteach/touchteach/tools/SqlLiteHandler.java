@@ -87,7 +87,7 @@ public class SqlLiteHandler extends SQLiteOpenHelper {
     public void addClass(Class newclass) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(ClassName, newclass.getClassName() ); // Contact Name
+        values.put(ClassName, newclass.getTitle() ); // Contact Name
         values.put(Capacity, newclass.getCapacity());
         values.put(Instructor, newclass.getInstructor());
         values.put(Cost, newclass.getCost());
