@@ -5,7 +5,6 @@ import android.app.TimePickerDialog;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Spinner;
@@ -45,17 +44,20 @@ public class CreateClassActivity extends AppCompatActivity {
 
     }
 
-    public void saveClass(View view){
 
+    public void saveClass(View view){
+        //todo check input values is correct
         String className = viewBinding.createClassEdClassName.getText().toString();
         String capacity = viewBinding.createClassEdCapacity.getText().toString();
+        String cost = viewBinding.createClassEdCost.getText().toString();
 
         Class saveClass = new Class(className);
-
-
+        saveClass.setCapacity(capacity);
+        saveClass.setCost(cost);
 
         saveClass.save(this);
     }
+
 
     public void clickSetTime(final View view){
         if (view instanceof TextView){

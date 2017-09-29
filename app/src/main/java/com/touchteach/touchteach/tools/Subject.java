@@ -39,4 +39,8 @@ public abstract class Subject {
         });
     }
 
+    public static String[] getSubjects(){
+        return subjects;
+    }
+
 }

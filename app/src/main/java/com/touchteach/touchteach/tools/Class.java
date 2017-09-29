@@ -7,7 +7,6 @@ import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,11 +20,9 @@ public class Class {
     private String instructor;
     private String limitations;
     private int cost;
-    private Date date;
     public  String subject;
     public  String description;
 //    todo add location
-//    todo add create date
 //    todo add class starting time
 //    todo add duration
     public String getDescription() {
@@ -62,9 +59,12 @@ public class Class {
     }
 
     public void setCapacity(String  capacity) {
-        if (capacity != null && !capacity.isEmpty()){
+        try {
             int cap = Integer.parseInt(capacity);
-        setCapacity(cap);
+            setCapacity(cap);
+        }catch (NumberFormatException exp){
+            //todo manage it
+            Log.e("Touch Teach","input item is incorrect");
         }
     }
 
@@ -92,30 +92,40 @@ public class Class {
         this.cost = cost;
     }
 
-    public Date getDate() {
-        return date;
+    public void setCost(String cost){
+        try {
+            int integerCost = Integer.parseInt(cost);
+            setCost(integerCost);
+        }catch (NumberFormatException exp){
+            //todo manage it
+            Log.e("Touch Teach","input item is incorrect");
+        }
     }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public Class(String name){
         setTitle(name);
     }
 
     public static void save(Class saveClass, final Context context){
         //todo complete save class
+        //todo add subject
+        //todo add description
+        //todo add teacher
+        //todo add star day
+        //todo add final day
+        //todo add limits
+        //todo add capacity
         HashMap hashMap = new HashMap();
         hashMap.put("title", saveClass.title);
         Backendless.Data.of("Class").save(hashMap, new AsyncCallback<Map>() {
             @Override
             public void handleResponse(Map response) {
+                //todo manage it
                 Log.d("Touch Teach", "class saved");
             }
 
             @Override
             public void handleFault(BackendlessFault fault) {
+                //todo manage it
                 Log.d("Touch Teach", "class can't save");
                 Log.d("Touch Teach", fault.toString());
             }

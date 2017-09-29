@@ -79,7 +79,7 @@
                     android:layout_marginRight="@dimen/fab_margin"
                     />
                 <TextView
-                    android:id="@+id/create_class_tv_cast_label"
+                    android:id="@+id/create_class_tv_cost_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fields_space_create_class"
@@ -93,10 +93,10 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
                     android:maxLines="1"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_cast_label"
+                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_cost_label"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_cast_label"
-                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_cast_label"
+                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_cost_label"
+                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_cost_label"
                     android:layout_marginRight="@dimen/fab_margin"
                     />
 
@@ -106,8 +106,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fields_space_create_class"
                     android:text="@string/create_class_start_date"
-                    app:layout_constraintTop_toBottomOf="@id/create_class_tv_cast_label"
-                    app:layout_constraintLeft_toLeftOf="@id/create_class_tv_cast_label" />
+                    app:layout_constraintTop_toBottomOf="@id/create_class_tv_cost_label"
+                    app:layout_constraintLeft_toLeftOf="@id/create_class_tv_cost_label" />
 
                 <TextView
                     android:id="@+id/create_class_tv_start_date"
@@ -210,7 +210,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/create_class_tv_description_label"
                     android:layout_marginRight="@dimen/fab_margin"/>
-
+                <!--todo add limits-->
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="@dimen/button_height"
