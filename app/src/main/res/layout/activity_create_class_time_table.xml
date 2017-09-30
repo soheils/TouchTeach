@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:onClick="setTime"
+    tools:context="com.touchteach.touchteach.CreateClassTimeTableActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/create_class_time_table_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.67" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/create_class_time_table_23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.33" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_start_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="زمان آغاز کلاس"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_end_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="16dp"
+                android:text="زمان پایان کلاس"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <CheckedTextView
+                android:id="@+id/create_class_time_table_ctv_shanbe_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="شنبه"
+                android:textAlignment="center"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_class_time_table_tv_start_label" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_s_shanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_shanbe_label"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_shanbe_label"
+                tools:text="11:34" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_e_shanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_shanbe_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_shanbe_label"
+                tools:text="11:34" />
+
+            <CheckedTextView
+                android:id="@+id/create_class_time_table_ctv_ekshanbe_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="یک شنبه"
+                android:textAlignment="center"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_class_time_table_ctv_shanbe_label" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_s_ekshanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_ekshanbe_label"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_ekshanbe_label"
+                tools:text="11:34" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_e_ekshanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_ekshanbe_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_ekshanbe_label"
+                tools:text="11:34" />
+
+            <CheckedTextView
+                android:id="@+id/create_class_time_table_ctv_doshanbe_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="دوشنبه"
+                android:textAlignment="center"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_class_time_table_ctv_ekshanbe_label" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_s_doshanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_doshanbe_label"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_doshanbe_label"
+                tools:text="11:34" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_e_doshanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_doshanbe_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_doshanbe_label"
+                tools:text="11:34" />
+
+            <CheckedTextView
+                android:id="@+id/create_class_time_table_ctv_seshanbe_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="سه شنبه"
+                android:textAlignment="center"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_class_time_table_ctv_doshanbe_label" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_s_seshanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_seshanbe_label"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_seshanbe_label"
+                tools:text="11:34" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_e_seshanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_seshanbe_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_seshanbe_label"
+                tools:text="11:34" />
+
+            <CheckedTextView
+                android:id="@+id/create_class_time_table_ctv_charshanbe_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="چهار شنبه"
+                android:textAlignment="center"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_class_time_table_ctv_seshanbe_label" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_s_charshanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_charshanbe_label"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_charshanbe_label"
+                tools:text="11:34" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_e_charshanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_charshanbe_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_charshanbe_label"
+                tools:text="11:34" />
+
+            <CheckedTextView
+                android:id="@+id/create_class_time_table_ctv_panjshanbe_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="پنج شنبه"
+                android:textAlignment="center"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_class_time_table_ctv_charshanbe_label" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_s_panjshanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_panjshanbe_label"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_panjshanbe_label"
+                tools:text="11:34" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_e_panjshanbe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_panjshanbe_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_panjshanbe_label"
+                tools:text="11:34" />
+
+            <CheckedTextView
+                android:id="@+id/create_class_time_table_ctv_jone_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="جمعه"
+                android:textAlignment="center"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_class_time_table_ctv_panjshanbe_label" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_s_jone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_jone_label"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_12"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_jone_label"
+                tools:text="11:34" />
+
+            <TextView
+                android:id="@+id/create_class_time_table_tv_e_jone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="setTime"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_time_table_ctv_jone_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_time_table_23"
+                app:layout_constraintTop_toTopOf="@+id/create_class_time_table_ctv_jone_label"
+                tools:text="11:34" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:layout_width="@dimen/progress_bar_length"
+        android:layout_height="@dimen/progress_bar_length"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        tools:visibility="visible" />
+
+</FrameLayout>

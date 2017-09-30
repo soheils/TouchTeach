@@ -1,6 +1,7 @@
 package com.touchteach.touchteach.tools;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.backendless.Backendless;
@@ -15,16 +16,23 @@ import java.util.Map;
  */
 
 public class Class {
-    private String title;
-    private int capacity;
-    private String instructor;
-    private String limitations;
-    private int cost;
-    public  String subject;
-    public  String description;
 //    todo add location
 //    todo add class starting time
 //    todo add duration
+    private String title;
+    private int capacity;
+    private String instructor;
+    private String limitations = "";
+    private int cost;
+    private String subject;
+    private String description;
+
+    //todo complete add tags
+    public final static String TITLE_TAG = "TITLE";
+    public final static String CAPACITY_TAG = "CAPACITY";
+    public final static String COST_TAG = "COST";
+    public final static String DESCRIPTION_TAG = "DESCRIPTION";
+
     public String getDescription() {
         return description;
     }
@@ -80,9 +88,11 @@ public class Class {
         return limitations;
     }
 
-    public void setLimitations(String limitations) {
-        this.limitations = limitations;
+    //todo complete this method
+    public void addLimitations(){
+
     }
+
 
     public int getCost() {
         return cost;
@@ -108,14 +118,19 @@ public class Class {
     public static void save(Class saveClass, final Context context){
         //todo complete save class
         //todo add subject
-        //todo add description
         //todo add teacher
         //todo add star day
         //todo add final day
-        //todo add limits
-        //todo add capacity
+        //todo add class table
+        //todo add documents
         HashMap hashMap = new HashMap();
         hashMap.put("title", saveClass.title);
+        hashMap.put("description", saveClass.description);
+        hashMap.put("limit", saveClass.limitations);
+        hashMap.put("cost", saveClass.cost);
+        hashMap.put("capacity", saveClass.capacity);
+
+        //todo add asyncCallback to input arguments
         Backendless.Data.of("Class").save(hashMap, new AsyncCallback<Map>() {
             @Override
             public void handleResponse(Map response) {
@@ -134,6 +149,32 @@ public class Class {
 
     public void save(Context context){
         Class.save(this, context);
+    }
+
+    public static void intentSave(Class saveClass, Intent intent){
+        //todo complete
+        intent.putExtra(TITLE_TAG,saveClass.title);
+        intent.putExtra(DESCRIPTION_TAG,saveClass.description);
+        intent.putExtra(COST_TAG, saveClass.cost);
+        intent.putExtra(CAPACITY_TAG, saveClass.capacity);
+    }
+
+    public void intentSave(Intent intent){
+        intentSave(this, intent);
+    }
+
+    public static Class intentLoad(Intent intent){
+        //todo complete
+        if (intent.hasExtra(TITLE_TAG)){
+            Class load = new Class(intent.getStringExtra(TITLE_TAG));
+            //todo set correct default value
+            load.setCapacity(intent.getIntExtra(CAPACITY_TAG, 10));
+            //todo set correct default value
+            load.setCost(intent.getIntExtra(COST_TAG, 100));
+            load.setDescription(DESCRIPTION_TAG);
+            return load;
+        }else
+            return null;
     }
 
 }

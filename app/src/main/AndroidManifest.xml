@@ -42,7 +42,10 @@
             android:label="@string/title_activity_class_search"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RequestClasses" />
-        <activity android:name=".CreateClassActivity" />
+        <activity android:name=".CreateClassActivity"
+            android:parentActivityName=".DashBoard"/>
+        <activity android:name=".CreateClassTimeTableActivity"
+            android:parentActivityName=".CreateClassActivity"/>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.touchteach.touchteach;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,25 +56,12 @@ public class CreateClassActivity extends AppCompatActivity {
         saveClass.setCapacity(capacity);
         saveClass.setCost(cost);
 
-        saveClass.save(this);
+        Intent startActivityIntent = new Intent(this, CreateClassTimeTableActivity.class);
+        saveClass.intentSave(startActivityIntent);
+
+        startActivity(startActivityIntent);
     }
 
-
-    public void clickSetTime(final View view){
-        if (view instanceof TextView){
-            new PersianTimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                    TextView textView = (TextView) view;
-                    if (timePicker.is24HourView())
-                        textView.setText(i + ":" + i1);
-                    else{
-                        // todo manage it
-                    }
-                }
-            }).show();
-        }
-    }
 
     public void clickSetDate(final View view){
         if (view instanceof TextView) {

@@ -2,232 +2,176 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <ScrollView android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/fab_margin"
+            android:layoutDirection="rtl">
+        <!--todo edit all limits-->
 
-        <ScrollView android:layout_height="match_parent"
-            android:layout_width="match_parent">
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
+            <ImageButton
+                android:layout_width="@dimen/image_view_create_activity"
+                android:layout_height="@dimen/image_view_create_activity"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/create_class_imb_class_image"
+                />
+            <EditText
+                android:id="@+id/create_class_ed_class_name"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_width="0dp"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_imb_class_image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_imb_class_image"
+                android:layout_margin="8dp"
+                android:hint="@string/request_class_classname"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/create_class_tv_subject_label"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/fab_margin"
-                android:layoutDirection="rtl">
-            <!--todo edit all limits-->
+                android:text="@string/request_class_subject_label"
+                android:layout_marginRight="32dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/fab_margin"
+                app:layout_constraintTop_toBottomOf="@+id/create_class_imb_class_image" />
 
-                <ImageButton
-                    android:layout_width="@dimen/image_view_create_activity"
-                    android:layout_height="@dimen/image_view_create_activity"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/create_class_imb_class_image"
-                    />
-                <EditText
-                    android:id="@+id/create_class_ed_class_name"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:layout_width="0dp"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_imb_class_image"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@+id/create_class_imb_class_image"
-                    android:layout_margin="8dp"
-                    android:hint="@string/request_class_classname"
-                    android:maxLines="1" />
+            <Spinner
+                android:id="@+id/create_class_sp_subject"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/fab_margin"
 
-                <TextView
-                    android:id="@+id/create_class_tv_subject_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/request_class_subject_label"
-                    android:layout_marginRight="32dp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:layout_marginTop="@dimen/fab_margin"
-                    app:layout_constraintTop_toBottomOf="@+id/create_class_imb_class_image" />
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_subject_label"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_tv_subject_label"
+                app:layout_constraintTop_toTopOf="@+id/create_class_tv_subject_label" />
 
-                <Spinner
-                    android:id="@+id/create_class_sp_subject"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/fab_margin"
+            <TextView
+                android:id="@+id/create_class_tv_capacity_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fields_space_create_class"
+                android:text="@string/create_class_capacity"
+                app:layout_constraintTop_toBottomOf="@+id/create_class_tv_subject_label"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_subject_label" />
 
-                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_subject_label"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_subject_label"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_subject_label" />
+            <EditText
+                android:id="@+id/create_class_ed_capacity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="4"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_tv_capacity_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/create_class_tv_capacity_label"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_capacity_label"
+                android:layout_marginRight="@dimen/fab_margin"
+                />
+            <TextView
+                android:id="@+id/create_class_tv_cost_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fields_space_create_class"
+                android:text="@string/create_class_cast"
+                app:layout_constraintTop_toBottomOf="@id/create_class_tv_capacity_label"
+                app:layout_constraintLeft_toLeftOf="@id/create_class_tv_capacity_label" />
 
-                <TextView
-                    android:id="@+id/create_class_tv_capacity_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fields_space_create_class"
-                    android:text="@string/create_class_capacity"
-                    app:layout_constraintTop_toBottomOf="@+id/create_class_tv_subject_label"
-                    app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_subject_label" />
+            <EditText
+                android:id="@+id/create_class_ed_cost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_tv_cost_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/create_class_tv_cost_label"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_cost_label"
+                android:layout_marginRight="@dimen/fab_margin"
+                />
 
-                <EditText
-                    android:id="@+id/create_class_ed_capacity"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ems="4"
-                    android:inputType="numberDecimal"
-                    android:maxLines="1"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_capacity_label"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_capacity_label"
-                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_capacity_label"
-                    android:layout_marginRight="@dimen/fab_margin"
-                    />
-                <TextView
-                    android:id="@+id/create_class_tv_cost_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fields_space_create_class"
-                    android:text="@string/create_class_cast"
-                    app:layout_constraintTop_toBottomOf="@id/create_class_tv_capacity_label"
-                    app:layout_constraintLeft_toLeftOf="@id/create_class_tv_capacity_label" />
+            <TextView
+                android:id="@+id/create_class_tv_start_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fields_space_create_class"
+                android:text="@string/create_class_start_date"
+                app:layout_constraintTop_toBottomOf="@id/create_class_tv_cost_label"
+                app:layout_constraintLeft_toLeftOf="@id/create_class_tv_cost_label" />
 
-                <EditText
-                    android:id="@+id/create_class_ed_cost"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:maxLines="1"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_cost_label"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_cost_label"
-                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_cost_label"
-                    android:layout_marginRight="@dimen/fab_margin"
-                    />
+            <TextView
+                android:id="@+id/create_class_tv_start_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_tv_start_date_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/create_class_tv_start_date_label"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_start_date_label"
+                android:layout_marginRight="@dimen/fab_margin"
+                android:onClick="clickSetDate"
+                android:textAlignment="center"
+                tools:text="2017/9/25"
+                />
 
-                <TextView
-                    android:id="@+id/create_class_tv_start_date_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fields_space_create_class"
-                    android:text="@string/create_class_start_date"
-                    app:layout_constraintTop_toBottomOf="@id/create_class_tv_cost_label"
-                    app:layout_constraintLeft_toLeftOf="@id/create_class_tv_cost_label" />
+            <TextView
+                android:id="@+id/create_class_tv_count_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fields_space_create_class"
+                android:text="@string/create_class_count_label"
+                app:layout_constraintTop_toBottomOf="@+id/create_class_tv_start_date_label"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_start_date_label" />
 
-                <TextView
-                    android:id="@+id/create_class_tv_start_date"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_start_date_label"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_start_date_label"
-                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_start_date_label"
-                    android:layout_marginRight="@dimen/fab_margin"
-                    android:onClick="clickSetDate"
-                    android:textAlignment="center"
-                    tools:text="2017/9/25"
-                    />
+            <EditText
+                android:id="@+id/create_class_ed_count"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_tv_count_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/create_class_tv_count_label"
+                app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_count_label"
+                android:layout_marginRight="@dimen/fab_margin"
+                />
 
-                <TextView
-                    android:id="@+id/create_class_tv_count_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fields_space_create_class"
-                    android:text="@string/create_class_count_label"
-                    app:layout_constraintTop_toBottomOf="@+id/create_class_tv_start_date_label"
-                    app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_start_date_label" />
 
-                <EditText
-                    android:id="@+id/create_class_ed_count"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:maxLines="1"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_count_label"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_count_label"
-                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_count_label"
-                    android:layout_marginRight="@dimen/fab_margin"
-                    />
+            <TextView
+                android:id="@+id/create_class_tv_description_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/create_class_description"
+                android:layout_marginTop="@dimen/fields_space_create_class"
+                app:layout_constraintTop_toBottomOf="@+id/create_class_tv_count_label"
+                app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_count_label" />
 
-                <TextView
-                    android:id="@+id/create_class_tv_start_time_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fields_space_create_class"
-                    android:text="@string/create_class_start_time"
-                    app:layout_constraintTop_toBottomOf="@+id/create_class_tv_count_label"
-                    app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_count_label" />
-
-                <TextView
-                    android:id="@+id/create_class_tv_start_time"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_start_time_label"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_start_time_label"
-                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_start_time_label"
-                    android:layout_marginRight="@dimen/fab_margin"
-                    android:textAlignment="center"
-                    android:onClick="clickSetTime"
-                    tools:text="5:55 ب.ظ"
-                    />
-
-                <TextView
-                    android:id="@+id/create_class_tv_duration_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fields_space_create_class"
-                    android:text="@string/create_class_duration"
-                    app:layout_constraintTop_toBottomOf="@+id/create_class_tv_start_time_label"
-                    app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_start_time_label" />
-
-                <TextView
-                    android:id="@+id/create_class_tv_duration"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_duration_label"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_duration_label"
-                    app:layout_constraintBottom_toBottomOf="@+id/create_class_tv_duration_label"
-                    android:layout_marginRight="@dimen/fab_margin"
-                    android:onClick="clickSetTime"
-                    android:textAlignment="center"
-                    tools:text="5:55"
-                    />
-
-                <TextView
-                    android:id="@+id/create_class_tv_description_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fields_space_create_class"
-                    android:text="@string/create_class_description"
-                    app:layout_constraintTop_toBottomOf="@+id/create_class_tv_duration_label"
-                    app:layout_constraintLeft_toLeftOf="@+id/create_class_tv_duration_label" />
-
-                <EditText
-                    android:id="@+id/create_class_ed_description"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/description_height_create_class"
-                    android:ems="10"
-                    android:inputType="textMultiLine"
-                    app:layout_constraintRight_toLeftOf="@+id/create_class_tv_description_label"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/create_class_tv_description_label"
-                    android:layout_marginRight="@dimen/fab_margin"/>
-                <!--todo add limits-->
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/button_height"
-                    android:layout_marginTop="@dimen/fields_space_create_class"
-                    android:onClick="saveClass"
-                    android:text="@string/create_class_create"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/create_class_ed_description" />
-            </android.support.constraint.ConstraintLayout>
-        </ScrollView>
-
-        <ProgressBar
-            android:id="@+id/create_class_progressBar"
-            android:layout_width="@dimen/progress_bar_length"
-            android:layout_height="@dimen/progress_bar_length"
-            android:visibility="invisible"
-            android:layout_gravity="center"/>
-    </FrameLayout>
+            <EditText
+                android:id="@+id/create_class_ed_description"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/description_height_create_class"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                app:layout_constraintRight_toLeftOf="@+id/create_class_tv_description_label"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/create_class_tv_description_label"
+                android:layout_marginRight="@dimen/fab_margin"/>
+            <!--todo add limits-->
+            <!--todo delete button and add next arrow in title bar-->
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="@dimen/fields_space_create_class"
+                android:onClick="saveClass"
+                android:text="@string/create_class_create"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/create_class_ed_description" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 </layout>

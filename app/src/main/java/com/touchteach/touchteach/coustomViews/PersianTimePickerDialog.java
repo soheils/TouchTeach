@@ -17,4 +17,6 @@ public final class PersianTimePickerDialog extends TimePickerDialog {
         setButton(DialogInterface.BUTTON_NEGATIVE, "صرف نظر", this);
         setTitle("تنظیم زمان");
     }
+
+    //todo override toString method
 }
