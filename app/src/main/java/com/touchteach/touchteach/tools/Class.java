@@ -115,7 +115,7 @@ public class Class {
         setTitle(name);
     }
 
-    public static void save(Class saveClass, final Context context){
+    public static void save(Class saveClass, AsyncCallback<Map> responder){
         //todo complete save class
         //todo add subject
         //todo add teacher
@@ -130,25 +130,11 @@ public class Class {
         hashMap.put("cost", saveClass.cost);
         hashMap.put("capacity", saveClass.capacity);
 
-        //todo add asyncCallback to input arguments
-        Backendless.Data.of("Class").save(hashMap, new AsyncCallback<Map>() {
-            @Override
-            public void handleResponse(Map response) {
-                //todo manage it
-                Log.d("Touch Teach", "class saved");
-            }
-
-            @Override
-            public void handleFault(BackendlessFault fault) {
-                //todo manage it
-                Log.d("Touch Teach", "class can't save");
-                Log.d("Touch Teach", fault.toString());
-            }
-        });
+        Backendless.Data.of("Class").save(hashMap, responder);
     }
 
-    public void save(Context context){
-        Class.save(this, context);
+    public void save(AsyncCallback<Map> responder){
+        Class.save(this, responder);
     }
 
     public static void intentSave(Class saveClass, Intent intent){

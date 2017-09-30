@@ -305,6 +305,7 @@
     </ScrollView>
 
     <ProgressBar
+        android:id="@+id/create_class_time_table_pb"
         android:layout_width="@dimen/progress_bar_length"
         android:layout_height="@dimen/progress_bar_length"
         android:layout_gravity="center"

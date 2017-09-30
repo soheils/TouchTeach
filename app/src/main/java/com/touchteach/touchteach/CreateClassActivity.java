@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Spinner;
@@ -40,13 +42,12 @@ public class CreateClassActivity extends AppCompatActivity {
 
     private void setViews(){
         viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_create_class);
-
         spSubjects = viewBinding.createClassSpSubject;
 
     }
 
 
-    public void saveClass(View view){
+    public void next(){
         //todo check input values is correct
         String className = viewBinding.createClassEdClassName.getText().toString();
         String capacity = viewBinding.createClassEdCapacity.getText().toString();
@@ -58,6 +59,7 @@ public class CreateClassActivity extends AppCompatActivity {
 
         Intent startActivityIntent = new Intent(this, CreateClassTimeTableActivity.class);
         saveClass.intentSave(startActivityIntent);
+
 
         startActivity(startActivityIntent);
     }
@@ -73,5 +75,21 @@ public class CreateClassActivity extends AppCompatActivity {
                 }
             }).show();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.next_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_next:
+                next();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
