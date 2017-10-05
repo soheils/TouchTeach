@@ -38,6 +38,7 @@ public class CreateClassActivity extends AppCompatActivity {
     private void bindView(){
         //todo bind spinner
         Subject.load();
+        spSubjects.setAdapter();
     }
 
     private void setViews(){
