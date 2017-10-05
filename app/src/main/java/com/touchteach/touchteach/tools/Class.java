@@ -17,7 +17,6 @@ import java.util.Map;
 
 public class Class {
 //    todo add location
-//    todo add class starting time
 //    todo add duration
     private String title;
     private int capacity;
@@ -26,12 +25,23 @@ public class Class {
     private int cost;
     private String subject;
     private String description;
+    private String timeTable;
 
     //todo complete add tags
     public final static String TITLE_TAG = "TITLE";
     public final static String CAPACITY_TAG = "CAPACITY";
     public final static String COST_TAG = "COST";
     public final static String DESCRIPTION_TAG = "DESCRIPTION";
+
+    //todo add backend less column const
+
+    public final static String SHANBE_DAY = "SH";
+    public final static String EKSHANBE_DAY = "EK";
+    public final static String DOSHANBE_DAY = "DO";
+    public final static String SESHANBE_DAY = "SE";
+    public final static String CHAHARSHANBE_DAY = "CH";
+    public final static String PANJSHANBE_DAY = "PA";
+    public final static String JOME_DAY = "JO";
 
     public String getDescription() {
         return description;
@@ -93,6 +103,10 @@ public class Class {
 
     }
 
+    public void clearLimitations(){
+        limitations = "";
+    }
+
 
     public int getCost() {
         return cost;
@@ -121,7 +135,6 @@ public class Class {
         //todo add teacher
         //todo add star day
         //todo add final day
-        //todo add class table
         //todo add documents
         HashMap hashMap = new HashMap();
         hashMap.put("title", saveClass.title);
@@ -129,6 +142,7 @@ public class Class {
         hashMap.put("limit", saveClass.limitations);
         hashMap.put("cost", saveClass.cost);
         hashMap.put("capacity", saveClass.capacity);
+        hashMap.put("time_table", saveClass.timeTable);
 
         Backendless.Data.of("Class").save(hashMap, responder);
     }
@@ -163,4 +177,45 @@ public class Class {
             return null;
     }
 
+    public void addDayToTimeTable(String dayTag, int startHour, int startMinute, int endHour, int endMinute){
+        checkDayTag(dayTag);
+        if (hasDayInTimeTable(dayTag))
+            deleteDayFromTimeTable(dayTag);
+        timeTable = timeTable + dayTag + startHour + "." + startMinute + "-" + endHour + "." + endMinute + "|";
+    }
+
+    public void deleteDayFromTimeTable(String dayTag){
+        checkDayTag(dayTag);
+        if (hasDayInTimeTable(dayTag)){
+            timeTable = timeTable.replace(getDayFromTimeTable(dayTag)+"|","");
+        }
+    }
+
+    public boolean hasDayInTimeTable(String dayTag){
+        checkDayTag(dayTag);
+        return timeTable.contains(dayTag);
+    }
+
+    public String getDayFromTimeTable(String dayTag){
+        checkDayTag(dayTag);
+        if (hasDayInTimeTable(dayTag)){
+            String[] days = timeTable.split("|");
+            for (String day : days)
+                if (day.contains(dayTag))
+                    return day;
+        }
+        return null;
+    }
+
+    private static void checkDayTag (String dayTag){
+        boolean flag = dayTag.equals(SHANBE_DAY) ||
+                dayTag.equals(EKSHANBE_DAY) ||
+                dayTag.equals(DOSHANBE_DAY) ||
+                dayTag.equals(SESHANBE_DAY) ||
+                dayTag.equals(CHAHARSHANBE_DAY) ||
+                dayTag.equals(PANJSHANBE_DAY) ||
+                dayTag.equals(JOME_DAY);
+        if (!flag)
+           throw new IllegalArgumentException("day tag uncorrected :" + dayTag);
+    }
 }

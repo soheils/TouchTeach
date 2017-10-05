@@ -9,7 +9,7 @@ import android.widget.SpinnerAdapter;
  * Created by sazgar on 10/3/2017.
  */
 
-//todo com
+//todo complete this class with right supper class
 public final class ClassSubjectSpinnerAdapter implements SpinnerAdapter {
     @Override
     public View getDropDownView(int i, View view, ViewGroup viewGroup) {
