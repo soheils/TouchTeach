@@ -38,7 +38,6 @@ public class CreateClassActivity extends AppCompatActivity {
     private void bindView(){
         //todo bind spinner
         Subject.load();
-        spSubjects.setAdapter();
     }
 
     private void setViews(){
@@ -53,10 +52,12 @@ public class CreateClassActivity extends AppCompatActivity {
         String className = viewBinding.createClassEdClassName.getText().toString();
         String capacity = viewBinding.createClassEdCapacity.getText().toString();
         String cost = viewBinding.createClassEdCost.getText().toString();
+        String description = viewBinding.createClassEdDescription.getText().toString();
 
         Class saveClass = new Class(className);
         saveClass.setCapacity(capacity);
         saveClass.setCost(cost);
+        saveClass.setDescription(description);
 
         Intent startActivityIntent = new Intent(this, CreateClassTimeTableActivity.class);
         saveClass.intentSave(startActivityIntent);

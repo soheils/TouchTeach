@@ -18,20 +18,21 @@ import java.util.Map;
 public class Class {
 //    todo add location
 //    todo add duration
-    private String title;
-    private int capacity;
-    private String instructor;
+    private String title = "";
+    private int capacity = 0;
+    private String instructor = "";
     private String limitations = "";
-    private int cost;
-    private String subject;
-    private String description;
-    private String timeTable;
+    private int cost = 0;
+    private String subject = "";
+    private String description = "";
+    private String timeTable = "";
 
     //todo complete add tags
     public final static String TITLE_TAG = "TITLE";
     public final static String CAPACITY_TAG = "CAPACITY";
     public final static String COST_TAG = "COST";
     public final static String DESCRIPTION_TAG = "DESCRIPTION";
+    public final static String TIME_TABLE_TAG = "TIMETABLE";
 
     //todo add backend less column const
 
@@ -42,6 +43,14 @@ public class Class {
     public final static String CHAHARSHANBE_DAY = "CH";
     public final static String PANJSHANBE_DAY = "PA";
     public final static String JOME_DAY = "JO";
+    public final static String[] DAY_TAGS = {
+            SHANBE_DAY
+            ,EKSHANBE_DAY
+            ,DOSHANBE_DAY
+            ,SESHANBE_DAY
+            ,CHAHARSHANBE_DAY
+            ,PANJSHANBE_DAY
+            ,JOME_DAY};
 
     public String getDescription() {
         return description;
@@ -157,6 +166,7 @@ public class Class {
         intent.putExtra(DESCRIPTION_TAG,saveClass.description);
         intent.putExtra(COST_TAG, saveClass.cost);
         intent.putExtra(CAPACITY_TAG, saveClass.capacity);
+        intent.putExtra(TIME_TABLE_TAG, saveClass.timeTable);
     }
 
     public void intentSave(Intent intent){
@@ -171,7 +181,8 @@ public class Class {
             load.setCapacity(intent.getIntExtra(CAPACITY_TAG, 10));
             //todo set correct default value
             load.setCost(intent.getIntExtra(COST_TAG, 100));
-            load.setDescription(DESCRIPTION_TAG);
+            load.setDescription(intent.getStringExtra(DESCRIPTION_TAG));
+            load.timeTable = intent.getStringExtra(TIME_TABLE_TAG);
             return load;
         }else
             return null;
@@ -205,6 +216,10 @@ public class Class {
                     return day;
         }
         return null;
+    }
+
+    public void clearTimeTable(){
+        this.timeTable = "";
     }
 
     private static void checkDayTag (String dayTag){
