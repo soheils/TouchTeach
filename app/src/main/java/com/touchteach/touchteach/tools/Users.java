@@ -17,8 +17,18 @@ import java.util.Stack;
 
 public class Users {
 
+    //todo clean properties
     private String email,fname,lname,age,subjects,id,gender;
     private String cash, Bio;
+    private String password;
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getBio() {
         return Bio;
@@ -71,6 +81,21 @@ public class Users {
         this.fname = user.getProperty("fname").toString();
         this.lname = user.getProperty("lname").toString();
         this.gender = user.getProperty("gender").toString();
+    }
 
+    public Users(){
+        //todo change it if necessary
+    }
+
+    public void login(String password, AsyncCallback<BackendlessUser> asyncCallback){
+        Users.login(email, password, asyncCallback);
+    }
+
+    public void login(AsyncCallback<BackendlessUser> asyncCallback){
+        login(password, asyncCallback);
+    }
+
+    public static void login(String email, String password, AsyncCallback<BackendlessUser> asyncCallback){
+        Backendless.UserService.login(email, password, asyncCallback, true);
     }
 }

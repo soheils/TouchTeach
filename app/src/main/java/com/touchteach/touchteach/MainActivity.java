@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
         Backendless.setUrl( Defaults.SERVER_URL );
         Backendless.initApp( getApplicationContext(), Defaults.APPLICATION_ID, Defaults.API_KEY );
         String currentUserObjectId = Backendless.UserService.loggedInUser();
+        //todo close this activity when user login or sing up
         Reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

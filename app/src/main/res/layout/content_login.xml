@@ -22,9 +22,16 @@
         android:maxLines="1"
         android:hint="@string/login_et_password"/>
 
+    <CheckBox
+        android:id="@+id/login_cb_save_me"
+        android:text="مرا به خاطر بسپار"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height" />
+
     <Button
         android:id="@+id/login_bt_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"
-        android:text="@string/login_bt_enter"/>
+        android:text="@string/login_bt_enter"
+        android:onClick="loginClick"/>
 </LinearLayout>

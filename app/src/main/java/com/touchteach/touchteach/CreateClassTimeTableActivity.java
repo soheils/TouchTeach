@@ -1,7 +1,6 @@
 package com.touchteach.touchteach;
 
 import android.app.TimePickerDialog;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +17,7 @@ import com.touchteach.touchteach.coustomViews.PersianTimePickerDialog;
 import com.touchteach.touchteach.tools.Class;
 
 import java.util.Map;
-
+//todo when click back settings is cleared
 public class CreateClassTimeTableActivity extends AppCompatActivity {
     private Class setTimeClass;
     private CheckBox[] dayLabel = new CheckBox[7];
