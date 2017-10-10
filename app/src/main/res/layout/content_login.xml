@@ -20,7 +20,7 @@
         android:layout_height="@dimen/edit_text_height"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:hint="@string/login_et_password"/>
+        android:hint="@string/login_et_password" />
 
     <CheckBox
         android:id="@+id/login_cb_save_me"

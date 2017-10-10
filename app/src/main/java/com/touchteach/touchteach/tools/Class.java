@@ -1,12 +1,10 @@
 package com.touchteach.touchteach.tools;
 
-import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,6 +49,8 @@ public class Class {
             ,CHAHARSHANBE_DAY
             ,PANJSHANBE_DAY
             ,JOME_DAY};
+
+
 
     public String getDescription() {
         return description;

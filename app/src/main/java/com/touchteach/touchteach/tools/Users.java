@@ -1,19 +1,19 @@
 package com.touchteach.touchteach.tools;
 
-import android.widget.Toast;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Stack;
 
 /**
  * Created by Soheil on 8/17/2017.
  */
+
+
 
 public class Users {
 
@@ -21,6 +21,24 @@ public class Users {
     private String email,fname,lname,age,subjects,id,gender;
     private String cash, Bio;
     private String password;
+    private boolean autoSingIn = false;
+
+    //todo complete
+    //share preferences tags
+    public final static String SHARE_PREFERENCES_NAME_TAG = "User";
+    public final static String SHARE_PREFERENCES_EMAIL_TAG = "Email";
+    public final static String SHARE_PREFERENCES_PASSWORD_TAG = "Password";
+    public final static String SHARE_PREFERENCES_FIRST_NAME_TAG = "First name";
+    public final static String SHARE_PREFERENCES_LAST_NAME_TAG = "Last name";
+    public final static String SHARE_PREFERENCES_AUTO_SING_IN_TAG = "Auto sing in";
+
+    public boolean isAutoSingIn() {
+        return autoSingIn;
+    }
+
+    public void setAutoSingIn(boolean autoSingIn) {
+        this.autoSingIn = autoSingIn;
+    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -97,5 +115,34 @@ public class Users {
 
     public static void login(String email, String password, AsyncCallback<BackendlessUser> asyncCallback){
         Backendless.UserService.login(email, password, asyncCallback, true);
+    }
+
+    public void sharePrefrenceSave(Context context){
+        SharedPreferences.Editor editor = context.getSharedPreferences(SHARE_PREFERENCES_NAME_TAG, Context.MODE_PRIVATE).edit();
+
+        //todo complete all user properties
+        editor.putString(SHARE_PREFERENCES_EMAIL_TAG, email);
+        editor.putString(SHARE_PREFERENCES_PASSWORD_TAG, password);
+        editor.putBoolean(SHARE_PREFERENCES_AUTO_SING_IN_TAG, autoSingIn);
+
+        editor.apply();
+    }
+
+    public static void sharePrefrencedelete(Context context){
+        SharedPreferences.Editor edit = context.getSharedPreferences(SHARE_PREFERENCES_NAME_TAG, Context.MODE_PRIVATE).edit();
+        edit.clear();
+        edit.apply();
+    }
+
+    public static Users sharepreferenceLoad(Context context){
+        SharedPreferences preferences = context.getSharedPreferences(SHARE_PREFERENCES_NAME_TAG, Context.MODE_PRIVATE);
+
+        //todo complete
+        Users users = new Users();
+        users.setEmail(preferences.getString(SHARE_PREFERENCES_EMAIL_TAG, null));
+        users.setPassword(preferences.getString(SHARE_PREFERENCES_PASSWORD_TAG, null));
+        users.setAutoSingIn(preferences.getBoolean(SHARE_PREFERENCES_AUTO_SING_IN_TAG, false));
+
+        return users;
     }
 }
