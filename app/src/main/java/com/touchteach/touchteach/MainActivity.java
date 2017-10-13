@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
         //todo close this activity when user login or sing up
 
         //todo think twice load form share preference is to long
-        if (Users.sharepreferenceLoad(this).isAutoSingIn()){
+        if (Users.sharePreferenceLoad(this).isAutoSingIn()){
             login(null);
         }
     }

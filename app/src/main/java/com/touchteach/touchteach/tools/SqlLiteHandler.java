@@ -76,8 +76,8 @@ public class SqlLiteHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(fname, user.getFname()); // Contact Name
-        values.put(lname, user.getLname());
+        values.put(fname, user.getFirstName()); // Contact Name
+        values.put(lname, user.getLastName());
         values.put(cash, user.getCash());
         values.put(email, user.getEmail());
         values.put(Bio, user.getBio() + "///" + user.getSubjects() + "///"+user.getGender());

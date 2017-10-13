@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity{
             }
         };
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,17 +55,19 @@ public class LoginActivity extends AppCompatActivity{
         tvPassword = (TextView) findViewById(R.id.login_et_password);
 
         if (isUserAutoSingIn()){
-            Users user = Users.sharepreferenceLoad(this);
+            Users user = Users.sharePreferenceLoad(this);
 
             tvPassword.setText("1234567890123456780");
             tvEmail.setText(user.getEmail());
-            cbSingIn.setChecked(user.isAutoSingIn());
+            cbSingIn.setChecked(true);
 
-            user.login(loginAsyncCallback());
+            user.login(this, loginAsyncCallback());
         }
     }
 
     public boolean isUserAutoSingIn(){
+        //todo use user method for this job
+        //because security
         return this.getSharedPreferences(Users.SHARE_PREFERENCES_NAME_TAG, Context.MODE_PRIVATE)
                 .getBoolean(Users.SHARE_PREFERENCES_AUTO_SING_IN_TAG, false);
     }
@@ -79,18 +82,21 @@ public class LoginActivity extends AppCompatActivity{
             Toast.makeText(getApplicationContext(),"پسورد نمی تواند خالی باشد یا کوتاه باشد" , Toast.LENGTH_SHORT).show();
 
         else {
+            Users user = new Users();
+            user.setEmail(email);
+
             if (cbSingIn.isChecked()) {
-                Users user = new Users();
-                user.setEmail(email);
                 user.setPassword(password);
                 user.setAutoSingIn(true);
 
-                user.sharePrefrenceSave(this);
+                user.sharePreferenceSave(this);
 
-                user.login(loginAsyncCallback());
+                user.login(this, loginAsyncCallback());
             } else {
-                Users.sharePrefrencedelete(this);
-                Users.login(email, password, loginAsyncCallback());
+                //todo delete it or not ?
+                Users.sharePreferenceDelete(this);
+
+                user.login(this ,password, loginAsyncCallback());
             }
         }
     }

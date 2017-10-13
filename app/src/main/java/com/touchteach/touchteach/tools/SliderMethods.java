@@ -1,6 +1,5 @@
 package com.touchteach.touchteach.tools;
 
-import android.app.Application;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -8,13 +7,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.backendless.BackendlessUser;
 import com.touchteach.touchteach.ClassSearch;
 import com.touchteach.touchteach.DashBoard;
 import com.touchteach.touchteach.EditProfile;
 import com.touchteach.touchteach.RequestClasses;
-
-import static android.R.attr.id;
 
 /**
  * Created by Soheil on 8/21/2017.
@@ -29,7 +25,7 @@ public class SliderMethods extends AppCompatActivity {
     }
     public void setName(int id){
         TextView view =(TextView) navigationView.getHeaderView(0).findViewById(id);
-        view.setText(user.getFname() + " " + user.getLname());
+        view.setText(user.getFirstName() + " " + user.getLastName());
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

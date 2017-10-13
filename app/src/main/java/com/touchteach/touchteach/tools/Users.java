@@ -13,18 +13,20 @@ import java.util.Stack;
  * Created by Soheil on 8/17/2017.
  */
 
-
+//todo in all setter add to preference ?
+//    for security add this or not ?
 
 public class Users {
 
     //todo clean properties
-    private String email,fname,lname,age,subjects,id,gender;
+    private String email, firstName, lastName,age,subjects,id,gender;
     private String cash, Bio;
     private String password;
     private boolean autoSingIn = false;
 
     //todo complete
     //share preferences tags
+    //todo private user share preferences name
     public final static String SHARE_PREFERENCES_NAME_TAG = "User";
     public final static String SHARE_PREFERENCES_EMAIL_TAG = "Email";
     public final static String SHARE_PREFERENCES_PASSWORD_TAG = "Password";
@@ -41,6 +43,7 @@ public class Users {
     }
 
     public void setPassword(String password) {
+        //todo when set password auto sing in is true ?
         this.password = password;
     }
 
@@ -68,12 +71,12 @@ public class Users {
         return email;
     }
 
-    public String getFname() {
-        return fname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLname() {
-        return lname;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getAge() {
@@ -96,8 +99,8 @@ public class Users {
     public Users(BackendlessUser user) {
         this.id = user.getUserId();
         this.email = user.getEmail();
-        this.fname = user.getProperty("fname").toString();
-        this.lname = user.getProperty("lname").toString();
+        this.firstName = user.getProperty("firstName").toString();
+        this.lastName = user.getProperty("lastName").toString();
         this.gender = user.getProperty("gender").toString();
     }
 
@@ -105,36 +108,79 @@ public class Users {
         //todo change it if necessary
     }
 
-    public void login(String password, AsyncCallback<BackendlessUser> asyncCallback){
-        Users.login(email, password, asyncCallback);
-    }
 
-    public void login(AsyncCallback<BackendlessUser> asyncCallback){
-        login(password, asyncCallback);
-    }
 
-    public static void login(String email, String password, AsyncCallback<BackendlessUser> asyncCallback){
+    // login methods
+
+    /**
+     * login whit email and password
+     * @param email
+     * @param password
+     * @param asyncCallback
+     * @param context
+     */
+    public void login(Context context,String email, String password, AsyncCallback<BackendlessUser> asyncCallback){
+        //todo get another property from server and set it except password
+        sharePreferenceSave(context);
         Backendless.UserService.login(email, password, asyncCallback, true);
     }
 
-    public void sharePrefrenceSave(Context context){
+    /**
+     * login this password
+     * email is store
+     * @param password
+     * @param asyncCallback
+     * @param context
+     */
+    public void login(Context context, String password, AsyncCallback<BackendlessUser> asyncCallback){
+        login(context, email, password, asyncCallback);
+    }
+
+    /**
+     * all parameters is stored
+     * @param asyncCallback
+     * @param context
+     */
+    public void login(Context context, AsyncCallback<BackendlessUser> asyncCallback){
+        login(context, password, asyncCallback);
+    }
+
+
+    // share preferences methods
+
+    /**
+     * save all user parameters in share preference
+     * @param context
+     */
+    public void sharePreferenceSave(Context context){
         SharedPreferences.Editor editor = context.getSharedPreferences(SHARE_PREFERENCES_NAME_TAG, Context.MODE_PRIVATE).edit();
 
         //todo complete all user properties
         editor.putString(SHARE_PREFERENCES_EMAIL_TAG, email);
         editor.putString(SHARE_PREFERENCES_PASSWORD_TAG, password);
         editor.putBoolean(SHARE_PREFERENCES_AUTO_SING_IN_TAG, autoSingIn);
+        editor.putString(SHARE_PREFERENCES_FIRST_NAME_TAG, firstName);
+        editor.putString(SHARE_PREFERENCES_LAST_NAME_TAG, lastName);
 
         editor.apply();
     }
 
-    public static void sharePrefrencedelete(Context context){
+    /**
+     * delete user saved in share preference
+     * @param context
+     */
+    public static void sharePreferenceDelete(Context context){
         SharedPreferences.Editor edit = context.getSharedPreferences(SHARE_PREFERENCES_NAME_TAG, Context.MODE_PRIVATE).edit();
         edit.clear();
         edit.apply();
     }
 
-    public static Users sharepreferenceLoad(Context context){
+    /**
+     * return user saved in share preference
+     * @param context
+     * @return user saved
+     */
+    public static Users sharePreferenceLoad(Context context){
         SharedPreferences preferences = context.getSharedPreferences(SHARE_PREFERENCES_NAME_TAG, Context.MODE_PRIVATE);
 
         //todo complete
@@ -142,6 +188,8 @@ public class Users {
         users.setEmail(preferences.getString(SHARE_PREFERENCES_EMAIL_TAG, null));
         users.setPassword(preferences.getString(SHARE_PREFERENCES_PASSWORD_TAG, null));
         users.setAutoSingIn(preferences.getBoolean(SHARE_PREFERENCES_AUTO_SING_IN_TAG, false));
+        users.firstName = preferences.getString(SHARE_PREFERENCES_FIRST_NAME_TAG, null);
+        users.lastName = preferences.getString(SHARE_PREFERENCES_LAST_NAME_TAG, null);
 
         return users;
     }

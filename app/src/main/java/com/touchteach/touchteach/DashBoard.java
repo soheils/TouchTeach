@@ -119,4 +119,8 @@ public class DashBoard extends AppCompatActivity
         //TODO handle slider
         return true;
     }
+
+    public void profile(View view){
+        startActivity(new Intent(this, EditProfile.class));
+    }
 }
