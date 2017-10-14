@@ -89,8 +89,6 @@ public class LoginActivity extends AppCompatActivity{
                 user.setPassword(password);
                 user.setAutoSingIn(true);
 
-                user.sharePreferenceSave(this);
-
                 user.login(this, loginAsyncCallback());
             } else {
                 //todo delete it or not ?

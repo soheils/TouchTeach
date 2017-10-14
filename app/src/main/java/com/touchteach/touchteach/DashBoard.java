@@ -2,6 +2,7 @@ package com.touchteach.touchteach;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.accessibility.AccessibilityManagerCompat;
@@ -63,9 +64,7 @@ public class DashBoard extends AppCompatActivity
 
             }
         });
-        currentuser = Backendless.UserService.CurrentUser();
-        StoredUser = new Users(currentuser);
-        NavigationView view = ((NavigationView) findViewById(R.id.nav_view));
+//        NavigationView view = ((NavigationView) findViewById(R.id.nav_view));
 //        SliderMethods methods = new SliderMethods(view,StoredUser);
 //        methods.ExecuteSetterMethods(R.id.slide_tv_user_name,R.id.slide_item_home,R.id.slide_item_class_group,R.id.activity_request_classes);
     }
@@ -106,7 +105,7 @@ public class DashBoard extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         switch (id){

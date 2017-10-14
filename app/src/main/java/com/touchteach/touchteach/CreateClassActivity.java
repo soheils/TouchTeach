@@ -17,7 +17,6 @@ import android.widget.TimePicker;
 import com.touchteach.touchteach.coustomViews.PersianDatePickerDialog;
 import com.touchteach.touchteach.databinding.ActivityCreateClassBinding;
 
-import com.touchteach.touchteach.coustomViews.PersianTimePickerDialog;
 import com.touchteach.touchteach.tools.Class;
 import com.touchteach.touchteach.tools.Subject;
 
