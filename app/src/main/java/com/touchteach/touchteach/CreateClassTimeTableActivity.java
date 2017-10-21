@@ -122,7 +122,7 @@ public class CreateClassTimeTableActivity extends AppCompatActivity {
         endLabel[6] = (TextView) findViewById(R.id.create_class_time_table_tv_e_jone);
     }
 
-    public void uncheckDay(View view){
+    public void uncheckedDay(View view){
         if (!(view instanceof CheckBox))
             return;
 

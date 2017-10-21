@@ -3,32 +3,114 @@ package com.touchteach.touchteach;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
+import com.backendless.BackendlessUser;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+import com.touchteach.touchteach.coustomViews.dialogs.InputTextDialog;
 import com.touchteach.touchteach.databinding.ActivityEditProfileBinding;
 import com.touchteach.touchteach.tools.Users;
 
 public class EditProfile extends AppCompatActivity {
+    private ActivityEditProfileBinding viewBinding;
+    private Users userEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        userEdit = Users.sharePreferenceLoad(this);
+        viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile);
+
+        bindingViews();
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        bindingViews();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.edit_profile_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.edit_profile_action_save:
+                updateUser();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void bindingViews(){
         Users user = Users.sharePreferenceLoad(this);
-
-        ActivityEditProfileBinding viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile);
-
+        //todo complete it
         viewBinding.editProfileTvName.setText(user.getFirstName());
         viewBinding.editProfileTvLastName.setText(user.getLastName());
         viewBinding.editProfileTvEmail.setText(user.getEmail());
+    }
+
+    public void editProfileProperty(View view){
+        InputTextDialog.OnTextSetListener setListener = null;
+        String title = "";
+
+        switch (view.getId()){
+            case R.id.edit_profile_vg_first_name:
+                title = "نام";
+                setListener = new InputTextDialog.OnTextSetListener() {
+                    @Override
+                    public void onTextSet(EditText editText, String text) {
+                        viewBinding.editProfileTvName.setText(text);
+                    }
+                };
+                break;
+            case R.id.edit_profile_vg_last_name:
+                title = "نام خانوادگی";
+                setListener = new InputTextDialog.OnTextSetListener() {
+                    @Override
+                    public void onTextSet(EditText editText, String text) {
+                        viewBinding.editProfileTvLastName.setText(text);
+                    }
+                };
+                break;
+            //todo complete it
+        }
+
+        InputTextDialog dialog = new InputTextDialog(this, setListener);
+        dialog.setTitle(title);
+        dialog.show();
+    }
+
+    private void updateUser(){
+        //todo complete it
+        userEdit.setFirstName(
+                viewBinding.editProfileTvName.getText().toString());
+        userEdit.setLastName(
+                viewBinding.editProfileTvLastName.getText().toString());
+
+        viewBinding.editProfilePb.setVisibility(View.VISIBLE);
+
+        userEdit.update(new AsyncCallback<BackendlessUser>() {
+            @Override
+            public void handleResponse(BackendlessUser response) {
+                viewBinding.editProfilePb.setVisibility(View.INVISIBLE);
+
+                Users.sharePreferenceDelete(EditProfile.this);
+                userEdit.sharePreferenceSave(EditProfile.this);
+
+                EditProfile.this.finish();
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                //todo handle it
+                Log.d("TouchTeach",fault.toString());
+            }
+        });
     }
 }
