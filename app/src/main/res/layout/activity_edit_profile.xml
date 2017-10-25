@@ -114,6 +114,36 @@
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/edit_profile_vg_birth_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#fff"
+                    android:onClick="birthDayClick">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="تاریخ تولد"
+                        android:layout_marginRight="24dp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/edit_profile_tv_birth_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="1998/07/05"
+                        android:layout_marginLeft="36dp"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
                     android:id="@+id/edit_profile_vg_email"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -139,6 +169,43 @@
                         tools:text="m@g.com"
                         android:layout_marginLeft="36dp"
                         app:layout_constraintLeft_toLeftOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/edit_profile_vg_bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#fff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="بیوگرافی"
+                        android:layout_marginRight="24dp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textAlignment="center" />
+
+                    <android.support.constraint.Guideline
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5"
+                        android:id="@+id/guideline" />
+
+                    <TextView
+                        android:id="@+id/edit_profile_tv_bio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="دانشجو رشته کامپیوتر دانشگاه فردوسی مشهد ورودی سال 1396"
+                        android:layout_marginLeft="36dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/guideline" />
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
         </ScrollView>

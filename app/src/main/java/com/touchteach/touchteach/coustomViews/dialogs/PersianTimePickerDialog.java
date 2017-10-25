@@ -1,4 +1,4 @@
-package com.touchteach.touchteach.coustomViews;
+package com.touchteach.touchteach.coustomViews.dialogs;
 
 import android.app.TimePickerDialog;
 import android.content.Context;

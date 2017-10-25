@@ -1,24 +1,29 @@
 package com.touchteach.touchteach;
 
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
-import com.touchteach.touchteach.coustomViews.PersianDatePickerDialog;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+import com.touchteach.touchteach.coustomViews.Adapters.ClassSubjectSpinnerAdapter;
+import com.touchteach.touchteach.coustomViews.dialogs.PersianDatePickerDialog;
 import com.touchteach.touchteach.databinding.ActivityCreateClassBinding;
 
 import com.touchteach.touchteach.tools.Class;
 import com.touchteach.touchteach.tools.Subject;
+
+import java.util.List;
+import java.util.Map;
 
 public class CreateClassActivity extends AppCompatActivity {
 
@@ -35,14 +40,12 @@ public class CreateClassActivity extends AppCompatActivity {
     }
 
     private void bindView(){
-        //todo bind spinner
-        Subject.load();
+        spSubjects.setAdapter(new ClassSubjectSpinnerAdapter(CreateClassActivity.this));
     }
 
     private void setViews(){
         viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_create_class);
         spSubjects = viewBinding.createClassSpSubject;
-
     }
 
 
@@ -71,6 +74,7 @@ public class CreateClassActivity extends AppCompatActivity {
             new PersianDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                    //todo use toString method
                     ((TextView) view).setText(i + "/" + i1 + "/" + i2);
                     //todo set max & min date
                 }

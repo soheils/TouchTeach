@@ -1,5 +1,6 @@
 package com.touchteach.touchteach;
 
+import android.app.DatePickerDialog;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,12 +8,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.touchteach.touchteach.coustomViews.dialogs.InputTextDialog;
+import com.touchteach.touchteach.coustomViews.dialogs.PersianDatePickerDialog;
 import com.touchteach.touchteach.databinding.ActivityEditProfileBinding;
 import com.touchteach.touchteach.tools.Users;
 
@@ -53,6 +57,8 @@ public class EditProfile extends AppCompatActivity {
         viewBinding.editProfileTvName.setText(user.getFirstName());
         viewBinding.editProfileTvLastName.setText(user.getLastName());
         viewBinding.editProfileTvEmail.setText(user.getEmail());
+        viewBinding.editProfileTvBirthDay.setText(user.getBirthDay());
+        viewBinding.editProfileTvBio.setText(user.getBio());
     }
 
     public void editProfileProperty(View view){
@@ -86,12 +92,22 @@ public class EditProfile extends AppCompatActivity {
         dialog.show();
     }
 
+    public void birthDayClick(View view){
+        PersianDatePickerDialog dialog = new PersianDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                viewBinding.editProfileTvBirthDay.setText(i + "/" + i1 + "/" + i2);
+            }
+        });
+        dialog.show();
+    }
+
     private void updateUser(){
         //todo complete it
-        userEdit.setFirstName(
-                viewBinding.editProfileTvName.getText().toString());
-        userEdit.setLastName(
-                viewBinding.editProfileTvLastName.getText().toString());
+        userEdit.setFirstName(viewBinding.editProfileTvName.getText().toString());
+        userEdit.setLastName(viewBinding.editProfileTvLastName.getText().toString());
+        userEdit.setBirthDay(viewBinding.editProfileTvBirthDay.getText().toString());
+        userEdit.setBio(viewBinding.editProfileTvBio.getText().toString());
 
         viewBinding.editProfilePb.setVisibility(View.VISIBLE);
 
@@ -103,6 +119,7 @@ public class EditProfile extends AppCompatActivity {
                 Users.sharePreferenceDelete(EditProfile.this);
                 userEdit.sharePreferenceSave(EditProfile.this);
 
+                Toast.makeText(EditProfile.this,"تغییرات با موفقیت ذخیره شد", Toast.LENGTH_SHORT).show();
                 EditProfile.this.finish();
             }
 

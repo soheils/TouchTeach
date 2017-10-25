@@ -7,6 +7,7 @@ import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.google.gson.Gson;
 
 import java.util.Stack;
 
@@ -21,32 +22,23 @@ public class Users extends BackendlessUser{
 
     //todo complete properties
     private String age,subjects,gender;
-    private String cash, Bio;
+    private String cash;
     private String password;
     private boolean autoSingIn = false;
     private Stack[] messages,classes;
 
-    //todo complete
     //share preferences tags
-    //todo private user share preferences name
-    public final static String SHARE_PREFERENCES_ID_TAG = "ID";
-    public final static String SHARE_PREFERENCES_NAME_TAG = "User";
-    public final static String SHARE_PREFERENCES_EMAIL_TAG = "Email";
-    public final static String SHARE_PREFERENCES_PASSWORD_TAG = "Password";
-    public final static String SHARE_PREFERENCES_FIRST_NAME_TAG = "First name";
-    public final static String SHARE_PREFERENCES_LAST_NAME_TAG = "Last name";
-    public final static String SHARE_PREFERENCES_AUTO_SING_IN_TAG = "Auto sing in";
+    private final static String SHARE_PREFERENCES_NAME_TAG = "User";
+    private final static String SHARE_PREFERENCES_TAG = "User json";
 
     //backend less column tags
-    private final static String BACKENDLESS_COLUMN_EMAIL = "email";
     private final static String BACKENDLESS_COLUMN_FIRST_NAME = "first_name";
     private final static String BACKENDLESS_COLUMN_LAST_NAME = "last_name";
     private final static String BACKENDLESS_COLUMN_BIRTH_DAY = "birth_day";
     private final static String BACKENDLESS_COLUMN_GENDER = "gender";
     private final static String BACKENDLESS_COLUMN_MILLI_CODE = "mellicode";
     private final static String BACKENDLESS_COLUMN_CASH = "cash";
-    private final static String BACKENDLESS_COLUMN_PASSWORD = "password";
-    private final static String BACKENDLESS_COLUMN_OBJECT_ID = "objectId";
+    private final static String BACKENDLESS_COLUMN_BIO = "bio";
 
     public boolean isAutoSingIn() {
         return autoSingIn;
@@ -54,6 +46,12 @@ public class Users extends BackendlessUser{
     //todo in all setter when value is change update user property in server
     public void setAutoSingIn(boolean autoSingIn) {
         this.autoSingIn = autoSingIn;
+    }
+
+    @Override
+    public String getPassword() {
+        //todo for security use this getPassword or another ?
+        return "";
     }
 
     @Override
@@ -68,18 +66,24 @@ public class Users extends BackendlessUser{
         super.setEmail(email);
     }
 
+    @Override
     public String getEmail() {
         String email = super.getEmail();
         return email == null || email.isEmpty() ? null : email;
     }
 
+
+
     public String getBio() {
-        return Bio;
+        Object bio = super.getProperty(BACKENDLESS_COLUMN_BIO);
+        return bio!= null &&
+               bio instanceof String &&
+                !bio.toString().isEmpty() ?
+                bio.toString() : null;
     }
 
     public void setBio(String bio) {
-        super.setProperty("Bio", bio);
-        this.Bio = bio;
+        super.setProperty(BACKENDLESS_COLUMN_BIO, bio);
     }
 
     public String getCash() {
@@ -128,12 +132,22 @@ public class Users extends BackendlessUser{
         return gender;
     }
 
+    public String getBirthDay(){
+        Object birth = super.getProperty(BACKENDLESS_COLUMN_BIRTH_DAY);
+        return birth != null &&
+                birth instanceof String &&
+                !birth.toString().isEmpty() ?
+                birth.toString() : null;
+    }
+
+    public void setBirthDay(String birthDay){
+        //todo check input string is correct
+        super.setProperty(BACKENDLESS_COLUMN_BIRTH_DAY, birthDay);
+    }
+
 
     public Users(BackendlessUser user) {
-        this.setEmail(user.getEmail());
-        this.setFirstName(user.getProperty(BACKENDLESS_COLUMN_FIRST_NAME).toString());
-        this.setLastName (user.getProperty(BACKENDLESS_COLUMN_LAST_NAME).toString());
-        this.gender = user.getProperty(BACKENDLESS_COLUMN_GENDER).toString();
+        setFromServer(user);
     }
 
     public Users(){
@@ -152,7 +166,6 @@ public class Users extends BackendlessUser{
      * @param context
      */
     public void login(final Context context, String email, String password, final AsyncCallback<BackendlessUser> asyncCallback){
-        //todo get another property from server and set it except password
         Backendless.UserService.login(email, password, new AsyncCallback<BackendlessUser>() {
             @Override
             public void handleResponse(BackendlessUser response) {
@@ -200,13 +213,9 @@ public class Users extends BackendlessUser{
     public void sharePreferenceSave(Context context){
         SharedPreferences.Editor editor = context.getSharedPreferences(SHARE_PREFERENCES_NAME_TAG, Context.MODE_PRIVATE).edit();
 
-        //todo complete all user properties
-        editor.putString(SHARE_PREFERENCES_ID_TAG, super.getObjectId());
-        editor.putString(SHARE_PREFERENCES_EMAIL_TAG, getEmail());
-        editor.putString(SHARE_PREFERENCES_PASSWORD_TAG, password);
-        editor.putBoolean(SHARE_PREFERENCES_AUTO_SING_IN_TAG, autoSingIn);
-        editor.putString(SHARE_PREFERENCES_FIRST_NAME_TAG, getFirstName());
-        editor.putString(SHARE_PREFERENCES_LAST_NAME_TAG, getLastName());
+        Gson gson = new Gson();
+        String json = gson.toJson(this);
+        editor.putString(SHARE_PREFERENCES_TAG,json);
 
         editor.apply();
     }
@@ -229,25 +238,16 @@ public class Users extends BackendlessUser{
     public static Users sharePreferenceLoad(Context context){
         SharedPreferences preferences = context.getSharedPreferences(SHARE_PREFERENCES_NAME_TAG, Context.MODE_PRIVATE);
 
-        //todo complete
-        Users users = new Users();
+        Gson gson = new Gson();
+        String json = preferences.getString(SHARE_PREFERENCES_TAG, "");
+        Users users = gson.fromJson(json, Users.class);
 
-        users.setProperty(ID_KEY, preferences.getString(SHARE_PREFERENCES_ID_TAG, null));
-        users.setEmail(preferences.getString(SHARE_PREFERENCES_EMAIL_TAG, null));
-        users.setPassword(preferences.getString(SHARE_PREFERENCES_PASSWORD_TAG, null));
-        users.setAutoSingIn(preferences.getBoolean(SHARE_PREFERENCES_AUTO_SING_IN_TAG, false));
-        users.setFirstName(preferences.getString(SHARE_PREFERENCES_FIRST_NAME_TAG, null));
-        users.setLastName (preferences.getString(SHARE_PREFERENCES_LAST_NAME_TAG, null));
-
-        return users;
+        return users == null ? new Users():users;
     }
 
 
     private void setFromServer(BackendlessUser server){
-        super.setProperty(ID_KEY,server.getObjectId());
-        this.setFirstName((String) server.getProperty(BACKENDLESS_COLUMN_FIRST_NAME));
-        this.setLastName ((String) server.getProperty(BACKENDLESS_COLUMN_LAST_NAME));
-
+        this.putProperties(server.getProperties());
     }
 
     public void update(AsyncCallback<BackendlessUser> asyncCallback){

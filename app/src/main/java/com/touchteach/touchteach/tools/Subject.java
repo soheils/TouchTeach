@@ -19,28 +19,31 @@ public abstract class Subject {
     //todo save all item in sql
     private static String[] subjects;
 
-    public static void load(){
+    public static void load(final AsyncCallback<List<Map>> responder){
 
         Backendless.Persistence.of("Subject").find(new AsyncCallback<List<Map>>() {
             @Override
             public void handleResponse(List<Map> response) {
                 int size = response.size();
                 subjects = new String[size];
-                for (int i=0 ; i<size ; i++){
+                for (int i=0 ; i<size ; i++)
                     subjects[i] = (String) response.get(i).get("title");
-                }
+                responder.handleResponse(response);
             }
 
             @Override
             public void handleFault(BackendlessFault fault) {
-                //todo handel it
-                Log.d("subject","fail");
+                responder.handleFault(fault);
             }
         });
     }
 
     public static String[] getSubjects(){
         return subjects;
+    }
+
+    public static String getSubjext(int index){
+        return subjects[index];
     }
 
 }

@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
-import com.touchteach.touchteach.coustomViews.PersianTimePickerDialog;
+import com.touchteach.touchteach.coustomViews.dialogs.PersianTimePickerDialog;
 import com.touchteach.touchteach.tools.Class;
 
 import java.util.Map;
@@ -75,9 +75,9 @@ public class CreateClassTimeTableActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        setTimeClass.save(new AsyncCallback<Map>() {
+        setTimeClass.save(new AsyncCallback<Integer>() {
             @Override
-            public void handleResponse(Map response) {
+            public void handleResponse(Integer response) {
                 progressBar.setVisibility(View.INVISIBLE);
                 //todo return message to recourse
                 Toast.makeText(CreateClassTimeTableActivity.this, "کلاس با موفقیت ثبت شد", Toast.LENGTH_LONG).show();
@@ -87,8 +87,11 @@ public class CreateClassTimeTableActivity extends AppCompatActivity {
 
             @Override
             public void handleFault(BackendlessFault fault) {
+                //todo handle it
+                Log.d("TouchTeach", fault.toString());
+                progressBar.setVisibility(View.INVISIBLE);
             }
-        });
+        }, this);
     }
 
     public void setView(){

@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity{
         tvEmail = (TextView) findViewById(R.id.login_et_user_name);
         tvPassword = (TextView) findViewById(R.id.login_et_password);
 
-        if (isUserAutoSingIn()){
+        if (Users.sharePreferenceLoad(this).isAutoSingIn()){
             Users user = Users.sharePreferenceLoad(this);
 
             tvPassword.setText("1234567890123456780");
@@ -65,17 +65,12 @@ public class LoginActivity extends AppCompatActivity{
         }
     }
 
-    public boolean isUserAutoSingIn(){
-        //todo use user method for this job
-        //because security
-        return this.getSharedPreferences(Users.SHARE_PREFERENCES_NAME_TAG, Context.MODE_PRIVATE)
-                .getBoolean(Users.SHARE_PREFERENCES_AUTO_SING_IN_TAG, false);
-    }
 
     public void loginClick(View view){
         String email = tvEmail.getText().toString();
         String password = tvPassword.getText().toString();
         //todo use string resource for toast text
+        //todo manage if login user fault
         if (email.isEmpty())
             Toast.makeText(getApplicationContext(),"ایمیل نمی تواند خالی باشد",Toast.LENGTH_SHORT).show();
         else if(password.isEmpty() || password.length() < 8)

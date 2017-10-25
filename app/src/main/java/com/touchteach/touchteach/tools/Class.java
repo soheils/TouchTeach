@@ -1,11 +1,15 @@
 package com.touchteach.touchteach.tools;
 
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,14 +30,21 @@ public class Class {
     private String timeTable = "";
 
     //todo complete add tags
-    public final static String TITLE_TAG = "TITLE";
-    public final static String CAPACITY_TAG = "CAPACITY";
-    public final static String COST_TAG = "COST";
-    public final static String DESCRIPTION_TAG = "DESCRIPTION";
-    public final static String TIME_TABLE_TAG = "TIMETABLE";
+    //intent tag
+    private final static String SAVE_NAME_TAG = "CLASS";
 
     //todo add backend less column const
+    private final static String BACKENDLESS_TABLE_NAME = "Class";
+    private final static String BACKENDLESS_TITLE_COLUMN = "title";
+    private final static String BACKENDLESS_DESCRIPTION_COLUMN = "description";
+    private final static String BACKENDLESS_LIMITS_COLUMN = "limit";
+    private final static String BACKENDLESS_COST_COLUMN = "cost";
+    private final static String BACKENDLESS_CAPACITY_COLUMN = "capacity";
+    private final static String BACKENDLESS_TIME_TABLE_COLUMN = "time_table";
+    private final static String BACKENDLESS_CREATOR_COLUMN = "creator";
 
+
+    //day tag
     public final static String SHANBE_DAY = "SH";
     public final static String EKSHANBE_DAY = "EK";
     public final static String DOSHANBE_DAY = "DO";
@@ -138,7 +149,7 @@ public class Class {
         setTitle(name);
     }
 
-    public static void save(Class saveClass, AsyncCallback<Map> responder){
+    public static void save(Class saveClass, final AsyncCallback<Integer> responder, final Context context){
         //todo complete save class
         //todo add subject
         //todo add teacher
@@ -146,27 +157,55 @@ public class Class {
         //todo add final day
         //todo add documents
         HashMap hashMap = new HashMap();
-        hashMap.put("title", saveClass.title);
-        hashMap.put("description", saveClass.description);
-        hashMap.put("limit", saveClass.limitations);
-        hashMap.put("cost", saveClass.cost);
-        hashMap.put("capacity", saveClass.capacity);
-        hashMap.put("time_table", saveClass.timeTable);
+        hashMap.put(BACKENDLESS_TITLE_COLUMN, saveClass.title);
+        hashMap.put(BACKENDLESS_DESCRIPTION_COLUMN, saveClass.description);
+        hashMap.put(BACKENDLESS_LIMITS_COLUMN, saveClass.limitations);
+        hashMap.put(BACKENDLESS_COST_COLUMN, saveClass.cost);
+        hashMap.put(BACKENDLESS_CAPACITY_COLUMN, saveClass.capacity);
+        hashMap.put(BACKENDLESS_TIME_TABLE_COLUMN, saveClass.timeTable);
 
-        Backendless.Data.of("Class").save(hashMap, responder);
+        Backendless.Data.of(BACKENDLESS_TABLE_NAME).save(hashMap, new AsyncCallback<Map>() {
+            @Override
+            public void handleResponse(Map response) {
+                ArrayList<Map> arrayList = new ArrayList();
+                arrayList.add(Users.sharePreferenceLoad(context).getProperties());
+                Backendless.Data.of(BACKENDLESS_TABLE_NAME).setRelation(response, BACKENDLESS_CREATOR_COLUMN, arrayList, new AsyncCallback<Integer>() {
+                    @Override
+                    public void handleResponse(Integer response) {
+                        responder.handleResponse(response);
+                    }
+
+                    @Override
+                    public void handleFault(BackendlessFault fault) {
+                        responder.handleFault(fault);
+                    }
+                });
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                //todo if fault delete class
+                responder.handleFault(fault);
+            }
+        });
+//        Backendless.Data.of(BACKENDLESS_TABLE_NAME).setRelation()
     }
 
-    public void save(AsyncCallback<Map> responder){
-        Class.save(this, responder);
+    public void save(AsyncCallback<Integer> responder, Context context){
+        Class.save(this, responder, context);
     }
 
     public static void intentSave(Class saveClass, Intent intent){
-        //todo complete
-        intent.putExtra(TITLE_TAG,saveClass.title);
-        intent.putExtra(DESCRIPTION_TAG,saveClass.description);
-        intent.putExtra(COST_TAG, saveClass.cost);
-        intent.putExtra(CAPACITY_TAG, saveClass.capacity);
-        intent.putExtra(TIME_TABLE_TAG, saveClass.timeTable);
+        //todo use json
+        Gson gson = new Gson();
+        String json = gson.toJson(saveClass);
+
+        intent.putExtra(SAVE_NAME_TAG, json);
+//        intent.putExtra(TITLE_TAG,saveClass.title);
+//        intent.putExtra(DESCRIPTION_TAG,saveClass.description);
+//        intent.putExtra(COST_TAG, saveClass.cost);
+//        intent.putExtra(CAPACITY_TAG, saveClass.capacity);
+//        intent.putExtra(TIME_TABLE_TAG, saveClass.timeTable);
     }
 
     public void intentSave(Intent intent){
@@ -174,18 +213,13 @@ public class Class {
     }
 
     public static Class intentLoad(Intent intent){
-        //todo complete
-        if (intent.hasExtra(TITLE_TAG)){
-            Class load = new Class(intent.getStringExtra(TITLE_TAG));
-            //todo set correct default value
-            load.setCapacity(intent.getIntExtra(CAPACITY_TAG, 10));
-            //todo set correct default value
-            load.setCost(intent.getIntExtra(COST_TAG, 100));
-            load.setDescription(intent.getStringExtra(DESCRIPTION_TAG));
-            load.timeTable = intent.getStringExtra(TIME_TABLE_TAG);
-            return load;
-        }else
-            return null;
+        //todo use json
+        Class load = null;
+        if (intent.hasExtra(SAVE_NAME_TAG)){
+            String json = intent.getStringExtra(SAVE_NAME_TAG);
+            load = new Gson().fromJson(json, Class.class);
+        }
+        return load;
     }
 
     public void addDayToTimeTable(String dayTag, int startHour, int startMinute, int endHour, int endMinute){
