@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.touchteach.touchteach.coustomViews.Adapters.ClassSubjectSpinnerAdapter;
+import com.touchteach.touchteach.coustomViews.CodeLibrary;
 import com.touchteach.touchteach.coustomViews.dialogs.PersianDatePickerDialog;
 import com.touchteach.touchteach.databinding.ActivityCreateClassBinding;
 
@@ -23,6 +24,8 @@ public class CreateClassActivity extends AppCompatActivity {
     private ActivityCreateClassBinding viewBinding;
     private Spinner spSubjects;
 
+    private final static int requestCodeFromChild = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +35,15 @@ public class CreateClassActivity extends AppCompatActivity {
         bindView();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == CodeLibrary.CLOSE_PARENT_ACTIVITY)
+            finish();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void bindView(){
+        //todo i think do something to fix spinner
         spSubjects.setAdapter(new ClassSubjectSpinnerAdapter(CreateClassActivity.this));
     }
 
@@ -48,8 +59,9 @@ public class CreateClassActivity extends AppCompatActivity {
         String capacity = viewBinding.createClassEdCapacity.getText().toString();
         String cost = viewBinding.createClassEdCost.getText().toString();
         String description = viewBinding.createClassEdDescription.getText().toString();
-        //todo set subject
+        //todo discomment line blow and fix bug for spinner
         String subject = "کامپیوتر";
+//        Subject subject = (Subject) spSubjects.getSelectedItem();
 
         Class saveClass = new Class(className);
         saveClass.setCapacity(capacity);
@@ -61,7 +73,7 @@ public class CreateClassActivity extends AppCompatActivity {
         Intent startActivityIntent = new Intent(this, CreateClassTimeTableActivity.class);
         saveClass.intentSave(startActivityIntent);
 
-        startActivity(startActivityIntent);
+        startActivityForResult(startActivityIntent, requestCodeFromChild);
     }
 
 

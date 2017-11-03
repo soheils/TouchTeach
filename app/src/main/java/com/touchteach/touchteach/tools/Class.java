@@ -266,7 +266,11 @@ public class Class {
     }
 
     public void addSubject(String subject){
-        this.subject.add(new Subject(subject));
+        addSubject(new Subject(subject));
+    }
+
+    public void addSubject(Subject subject){
+        this.subject.add(subject);
     }
 
     public void clearSubject(){

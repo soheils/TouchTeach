@@ -8,6 +8,7 @@ import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 
 import com.touchteach.touchteach.backendless.Defaults;
+import com.touchteach.touchteach.coustomViews.CodeLibrary;
 import com.touchteach.touchteach.tools.Users;
 
 public class MainActivity extends Activity {
@@ -21,7 +22,6 @@ public class MainActivity extends Activity {
         Backendless.setUrl( Defaults.SERVER_URL );
         Backendless.initApp( getApplicationContext(), Defaults.APPLICATION_ID, Defaults.API_KEY );
         String currentUserObjectId = Backendless.UserService.loggedInUser();
-        //todo close this activity when user login or sing up
 
         //todo think twice load form share preference is to long
         if (Users.sharePreferenceLoad(this).isAutoSingIn()){
@@ -30,11 +30,20 @@ public class MainActivity extends Activity {
     }
 
     public void register (View view){
-        startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
+        startActivityForResult(new Intent(getApplicationContext(),RegisterActivity.class), 0);
     }
 
     public void login(View view){
-        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        startActivityForResult(new Intent(getApplicationContext(),LoginActivity.class), 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode){
+            case CodeLibrary.CLOSE_PARENT_ACTIVITY:
+                finish();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
 

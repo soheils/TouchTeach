@@ -21,7 +21,7 @@ import java.util.Stack;
 public class Users extends BackendlessUser{
 
     //todo complete properties
-    private String age,subjects,gender;
+    private String subjects,gender;
     private String cash;
     private String password;
     private boolean autoSingIn = false;
@@ -119,14 +119,9 @@ public class Users extends BackendlessUser{
         super.setProperty(BACKENDLESS_COLUMN_LAST_NAME, lastName);
     }
 
-    public String getAge() {
-        return age;
-    }
-
     public String getSubjects() {
         return subjects;
     }
-
 
     public String getGender() {
         return gender;
@@ -171,7 +166,7 @@ public class Users extends BackendlessUser{
             public void handleResponse(BackendlessUser response) {
                 asyncCallback.handleResponse(response);
 
-                setFromServer(Backendless.UserService.CurrentUser());
+                setFromServer(response);
 
                 sharePreferenceSave(context);
             }

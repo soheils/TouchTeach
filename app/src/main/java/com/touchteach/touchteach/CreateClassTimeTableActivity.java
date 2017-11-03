@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.touchteach.touchteach.coustomViews.CodeLibrary;
 import com.touchteach.touchteach.coustomViews.dialogs.PersianTimePickerDialog;
 import com.touchteach.touchteach.tools.Class;
 
@@ -81,6 +82,7 @@ public class CreateClassTimeTableActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
                 //todo return message to recourse
                 Toast.makeText(CreateClassTimeTableActivity.this, "کلاس با موفقیت ثبت شد", Toast.LENGTH_LONG).show();
+                setResult(CodeLibrary.CLOSE_PARENT_ACTIVITY);
                 CreateClassTimeTableActivity.this.finish();
             }
 

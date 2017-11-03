@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.touchteach.touchteach.coustomViews.CodeLibrary;
 import com.touchteach.touchteach.tools.Users;
 
 public class LoginActivity extends AppCompatActivity{
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity{
             public void handleResponse( BackendlessUser loggedInUser )
             {
                 bar.setVisibility(View.INVISIBLE);
+                setResult(CodeLibrary.CLOSE_PARENT_ACTIVITY);
                 LoginActivity.this.finish();
                 startActivity(new Intent(getApplicationContext(),DashBoard.class));
             }
