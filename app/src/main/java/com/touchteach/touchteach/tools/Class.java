@@ -6,11 +6,13 @@ import android.util.Log;
 
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessException;
 import com.backendless.exceptions.BackendlessFault;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,7 +27,7 @@ public class Class {
     private String instructor = "";
     private String limitations = "";
     private int cost = 0;
-    private String subject = "";
+    private List<Subject> subject = new ArrayList<>();
     private String description = "";
     private String timeTable = "";
 
@@ -42,6 +44,7 @@ public class Class {
     private final static String BACKENDLESS_CAPACITY_COLUMN = "capacity";
     private final static String BACKENDLESS_TIME_TABLE_COLUMN = "time_table";
     private final static String BACKENDLESS_CREATOR_COLUMN = "creator";
+    private final static String BACKENDLESS_SUBJECT_COLUMN = "subject";
 
 
     //day tag
@@ -71,13 +74,6 @@ public class Class {
         this.description = description;
     }
 
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
 
     public String getTitle() {
         return title;
@@ -149,10 +145,8 @@ public class Class {
         setTitle(name);
     }
 
-    public static void save(Class saveClass, final AsyncCallback<Integer> responder, final Context context){
+    public static void save(final Class saveClass, final AsyncCallback<Map> responder, final Context context){
         //todo complete save class
-        //todo add subject
-        //todo add teacher
         //todo add star day
         //todo add final day
         //todo add documents
@@ -164,22 +158,33 @@ public class Class {
         hashMap.put(BACKENDLESS_CAPACITY_COLUMN, saveClass.capacity);
         hashMap.put(BACKENDLESS_TIME_TABLE_COLUMN, saveClass.timeTable);
 
+
         Backendless.Data.of(BACKENDLESS_TABLE_NAME).save(hashMap, new AsyncCallback<Map>() {
             @Override
             public void handleResponse(Map response) {
-                ArrayList<Map> arrayList = new ArrayList();
-                arrayList.add(Users.sharePreferenceLoad(context).getProperties());
-                Backendless.Data.of(BACKENDLESS_TABLE_NAME).setRelation(response, BACKENDLESS_CREATOR_COLUMN, arrayList, new AsyncCallback<Integer>() {
+                Map parent = response;
+                Backendless.Data.of(BACKENDLESS_TABLE_NAME).setRelation(parent, BACKENDLESS_SUBJECT_COLUMN, saveClass.getMapSubjects(), new AsyncCallback<Integer>() {
                     @Override
-                    public void handleResponse(Integer response) {
-                        responder.handleResponse(response);
-                    }
-
+                    public void handleResponse(Integer response) {}
                     @Override
                     public void handleFault(BackendlessFault fault) {
                         responder.handleFault(fault);
                     }
                 });
+
+                List array = new ArrayList();
+                array.add(Backendless.UserService.CurrentUser());
+                Backendless.Data.of(BACKENDLESS_TABLE_NAME).setRelation(parent, BACKENDLESS_CREATOR_COLUMN, array, new AsyncCallback<Integer>() {
+                    @Override
+                    public void handleResponse(Integer response) {}
+
+                    @Override
+                    public void handleFault(BackendlessFault fault) {
+                        responder.handleFault(fault);
+                    }
+
+                });
+                responder.handleResponse(response);
             }
 
             @Override
@@ -188,24 +193,17 @@ public class Class {
                 responder.handleFault(fault);
             }
         });
-//        Backendless.Data.of(BACKENDLESS_TABLE_NAME).setRelation()
     }
 
-    public void save(AsyncCallback<Integer> responder, Context context){
+    public void save(AsyncCallback<Map> responder, Context context){
         Class.save(this, responder, context);
     }
 
     public static void intentSave(Class saveClass, Intent intent){
-        //todo use json
         Gson gson = new Gson();
         String json = gson.toJson(saveClass);
 
         intent.putExtra(SAVE_NAME_TAG, json);
-//        intent.putExtra(TITLE_TAG,saveClass.title);
-//        intent.putExtra(DESCRIPTION_TAG,saveClass.description);
-//        intent.putExtra(COST_TAG, saveClass.cost);
-//        intent.putExtra(CAPACITY_TAG, saveClass.capacity);
-//        intent.putExtra(TIME_TABLE_TAG, saveClass.timeTable);
     }
 
     public void intentSave(Intent intent){
@@ -213,7 +211,6 @@ public class Class {
     }
 
     public static Class intentLoad(Intent intent){
-        //todo use json
         Class load = null;
         if (intent.hasExtra(SAVE_NAME_TAG)){
             String json = intent.getStringExtra(SAVE_NAME_TAG);
@@ -266,5 +263,25 @@ public class Class {
                 dayTag.equals(JOME_DAY);
         if (!flag)
            throw new IllegalArgumentException("day tag uncorrected :" + dayTag);
+    }
+
+    public void addSubject(String subject){
+        this.subject.add(new Subject(subject));
+    }
+
+    public void clearSubject(){
+        this.subject.clear();
+    }
+
+    public void removeSubject(String subject){
+        this.subject.remove(new Subject(subject));
+    }
+
+    private List<Map> getMapSubjects(){
+        List<Map> results = new ArrayList<>();
+        int length = subject.size();
+        for (int i=0 ; i<length ; i++)
+            results.add(subject.get(i).getProperty());
+        return results;
     }
 }

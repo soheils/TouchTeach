@@ -91,7 +91,6 @@ public class SqlLiteHandler extends SQLiteOpenHelper {
         values.put(Capacity, newclass.getCapacity());
         values.put(Instructor, newclass.getInstructor());
         values.put(Cost, newclass.getCost());
-        values.put(Subject, newclass.getSubject());
         values.put(Description, newclass.getDescription());
         // Inserting Row10
         db.insert(TableName, null, values);

@@ -55,15 +55,18 @@ public class CreateClassActivity extends AppCompatActivity {
         String capacity = viewBinding.createClassEdCapacity.getText().toString();
         String cost = viewBinding.createClassEdCost.getText().toString();
         String description = viewBinding.createClassEdDescription.getText().toString();
+        //todo set subject
+        String subject = "کامپیوتر";
 
         Class saveClass = new Class(className);
         saveClass.setCapacity(capacity);
         saveClass.setCost(cost);
         saveClass.setDescription(description);
+        saveClass.clearSubject();
+        saveClass.addSubject(subject);
 
         Intent startActivityIntent = new Intent(this, CreateClassTimeTableActivity.class);
         saveClass.intentSave(startActivityIntent);
-
 
         startActivity(startActivityIntent);
     }

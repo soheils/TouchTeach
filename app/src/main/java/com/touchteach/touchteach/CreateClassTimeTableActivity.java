@@ -75,14 +75,13 @@ public class CreateClassTimeTableActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        setTimeClass.save(new AsyncCallback<Integer>() {
+        setTimeClass.save(new AsyncCallback<Map>() {
             @Override
-            public void handleResponse(Integer response) {
+            public void handleResponse(Map response) {
                 progressBar.setVisibility(View.INVISIBLE);
                 //todo return message to recourse
                 Toast.makeText(CreateClassTimeTableActivity.this, "کلاس با موفقیت ثبت شد", Toast.LENGTH_LONG).show();
                 CreateClassTimeTableActivity.this.finish();
-
             }
 
             @Override
