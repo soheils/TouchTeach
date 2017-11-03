@@ -253,4 +253,19 @@ public class Users extends BackendlessUser{
     public void update(AsyncCallback<BackendlessUser> asyncCallback){
         Backendless.UserService.update(this, asyncCallback);
     }
+
+    public void logout(final Context context, final AsyncCallback<Void> responder){
+        Backendless.UserService.logout(new AsyncCallback<Void>() {
+            @Override
+            public void handleResponse(Void response) {
+                Users.sharePreferenceDelete(context);
+                responder.handleResponse(response);
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                responder.handleFault(fault);
+            }
+        });
+    }
 }

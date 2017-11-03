@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,17 +12,11 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
 import com.touchteach.touchteach.coustomViews.Adapters.ClassSubjectSpinnerAdapter;
 import com.touchteach.touchteach.coustomViews.dialogs.PersianDatePickerDialog;
 import com.touchteach.touchteach.databinding.ActivityCreateClassBinding;
 
 import com.touchteach.touchteach.tools.Class;
-import com.touchteach.touchteach.tools.Subject;
-
-import java.util.List;
-import java.util.Map;
 
 public class CreateClassActivity extends AppCompatActivity {
 

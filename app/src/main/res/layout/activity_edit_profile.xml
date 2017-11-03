@@ -207,6 +207,27 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toLeftOf="@+id/guideline" />
                 </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/edit_profile_vg_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#fff"
+                    android:onClick="logoutClick">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="خروج از حساب"
+                        android:textColor="#ff0000"
+                        android:layout_marginRight="24dp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textAlignment="center" />
+
+                </android.support.constraint.ConstraintLayout>
             </LinearLayout>
         </ScrollView>
         <ProgressBar

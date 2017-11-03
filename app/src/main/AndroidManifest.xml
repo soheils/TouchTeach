@@ -36,7 +36,8 @@
             android:name=".DashBoard"
             android:label="@string/title_activity_dash_board"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EditProfile" />
+        <activity android:name=".EditProfile"
+            android:parentActivityName=".DashBoard"/>
         <activity
             android:name=".ClassSearch"
             android:label="@string/title_activity_class_search"

@@ -1,6 +1,7 @@
 package com.touchteach.touchteach;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -59,6 +60,24 @@ public class EditProfile extends AppCompatActivity {
         viewBinding.editProfileTvEmail.setText(user.getEmail());
         viewBinding.editProfileTvBirthDay.setText(user.getBirthDay());
         viewBinding.editProfileTvBio.setText(user.getBio());
+    }
+
+    public void logoutClick(View view){
+        viewBinding.editProfilePb.setVisibility(View.VISIBLE);
+        Users.sharePreferenceLoad(this).logout(this, new AsyncCallback<Void>() {
+            @Override
+            public void handleResponse(Void response) {
+                //todo finish all activities
+                startActivity(new Intent(EditProfile.this, MainActivity.class));
+                EditProfile.this.finish();
+                viewBinding.editProfilePb.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                //todo handle it
+            }
+        });
     }
 
     public void editProfileProperty(View view){
