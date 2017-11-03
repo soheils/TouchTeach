@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.touchteach.touchteach.coustomViews.CodeLibrary;
 import com.touchteach.touchteach.coustomViews.dialogs.InputTextDialog;
 import com.touchteach.touchteach.coustomViews.dialogs.PersianDatePickerDialog;
 import com.touchteach.touchteach.databinding.ActivityEditProfileBinding;
@@ -68,8 +69,9 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void handleResponse(Void response) {
                 //todo finish all activities
-                startActivity(new Intent(EditProfile.this, MainActivity.class));
+                setResult(CodeLibrary.CLOSE_PARENT_ACTIVITY);
                 EditProfile.this.finish();
+                startActivity(new Intent(EditProfile.this, MainActivity.class));
                 viewBinding.editProfilePb.setVisibility(View.INVISIBLE);
             }
 
@@ -80,10 +82,11 @@ public class EditProfile extends AppCompatActivity {
         });
     }
 
-    public void editProfileProperty(View view){
+    public void editProfileProperty(final View view){
         InputTextDialog.OnTextSetListener setListener = null;
         String title = "";
-
+        String beforeString = "";
+        boolean oneLine = true;
         switch (view.getId()){
             case R.id.edit_profile_vg_first_name:
                 title = "نام";
@@ -103,11 +106,24 @@ public class EditProfile extends AppCompatActivity {
                     }
                 };
                 break;
+            case R.id.edit_profile_vg_bio:
+                title = "بیوگرافی";
+                setListener = new InputTextDialog.OnTextSetListener() {
+                    @Override
+                    public void onTextSet(EditText editText, String text) {
+                        viewBinding.editProfileTvBio.setText(text);
+                    }
+                };
+                oneLine = false;
+                beforeString = userEdit.getBio();
+                break;
             //todo complete it
         }
 
         InputTextDialog dialog = new InputTextDialog(this, setListener);
         dialog.setTitle(title);
+        dialog.setOneLine(oneLine);
+        dialog.setBeforeString(beforeString);
         dialog.show();
     }
 

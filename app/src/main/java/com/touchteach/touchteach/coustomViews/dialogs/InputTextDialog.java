@@ -3,6 +3,7 @@ package com.touchteach.touchteach.coustomViews.dialogs;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.InputType;
 import android.widget.EditText;
@@ -16,12 +17,13 @@ import com.touchteach.touchteach.R;
 public final class InputTextDialog extends AlertDialog {
 
     private EditText editText;
+    private boolean isOneLine = true;
+    private String beforeString = "";
 
     public InputTextDialog(@NonNull final Context context, final OnTextSetListener onTextSetListener) {
         super(context);
         setTitle("title");
         setView(getLayoutInflater().inflate(R.layout.input_text_dialog_layout, null));
-        editText = findViewById(R.id.input_text_dialog_ed_text);
 
 
         setButton(BUTTON_POSITIVE, "ثبت", new OnClickListener() {
@@ -42,11 +44,19 @@ public final class InputTextDialog extends AlertDialog {
         void onTextSet(EditText editText, String text);
     }
 
-    public void setInputType (int inputType){
-        editText.setInputType(inputType);
+    public void setOneLine (boolean oneLine){
+        isOneLine = oneLine;
     }
 
-    public void setMaxLine(int maxLine){
-        editText.setMaxLines(maxLine);
+    public void setBeforeString(String beforeString){
+        this.beforeString = beforeString;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        editText = findViewById(R.id.input_text_dialog_ed_text);
+        editText.setSingleLine(isOneLine);
+        editText.setText(beforeString);
     }
 }

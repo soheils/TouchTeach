@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.view.accessibility.AccessibilityManagerCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,23 +14,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
-import com.touchteach.touchteach.tools.Users;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
+import com.touchteach.touchteach.coustomViews.CodeLibrary;
 
 public class DashBoard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private BackendlessUser currentuser;
-    private Users StoredUser;
+
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
+    //todo moratab shavad
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,14 +45,15 @@ public class DashBoard extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.dash_board_nav_bar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         String currentUserObjectId = Backendless.UserService.loggedInUser();
         Backendless.UserService.findById(currentUserObjectId, new AsyncCallback<BackendlessUser>() {
             @Override
@@ -70,8 +72,23 @@ public class DashBoard extends AppCompatActivity
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode){
+            case CodeLibrary.CLOSE_PARENT_ACTIVITY:
+                finish();
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -114,12 +131,12 @@ public class DashBoard extends AppCompatActivity
                 startActivity(intent);
                 break;
         }
-        // Handle navigation view item clicks here.
+        // Handle drawe view item clicks here.
         //TODO handle slider
         return true;
     }
 
     public void profile(View view){
-        startActivity(new Intent(this, EditProfile.class));
+        startActivityForResult(new Intent(this, EditProfile.class), 0);
     }
 }
