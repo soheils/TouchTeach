@@ -45,13 +45,13 @@ public class DashBoard extends AppCompatActivity
             }
         });
 
-        drawer = (DrawerLayout) findViewById(R.id.dash_board_nav_bar);
+        drawer = (DrawerLayout) findViewById(R.id.dash_board_drower_lay);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.dash_board_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         String currentUserObjectId = Backendless.UserService.loggedInUser();
@@ -124,12 +124,17 @@ public class DashBoard extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
+        Intent intent;
         switch (id){
             case R.id.slide_item_create_class:
-                Intent intent = new Intent(this, CreateClassActivity.class);
+                intent = new Intent(this, CreateClassActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.slide_item_my_classes:
+                intent = new Intent(this, ClassManagerActivity.class);
+                startActivity(intent);
+                break;
+
         }
         // Handle drawe view item clicks here.
         //TODO handle slider

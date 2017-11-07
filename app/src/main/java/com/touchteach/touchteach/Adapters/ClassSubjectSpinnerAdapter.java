@@ -1,4 +1,4 @@
-package com.touchteach.touchteach.coustomViews.Adapters;
+package com.touchteach.touchteach.Adapters;
 
 import android.content.Context;
 import android.database.DataSetObserver;

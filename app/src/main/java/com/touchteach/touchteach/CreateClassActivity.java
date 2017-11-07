@@ -12,7 +12,7 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.touchteach.touchteach.coustomViews.Adapters.ClassSubjectSpinnerAdapter;
+import com.touchteach.touchteach.Adapters.ClassSubjectSpinnerAdapter;
 import com.touchteach.touchteach.coustomViews.CodeLibrary;
 import com.touchteach.touchteach.coustomViews.dialogs.PersianDatePickerDialog;
 import com.touchteach.touchteach.databinding.ActivityCreateClassBinding;

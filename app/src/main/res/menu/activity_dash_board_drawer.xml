@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <!--TODO icon ha dorost shavand-->
-    <group android:checkableBehavior="single">
+    <!--<group android:checkableBehavior="single">-->
         <item
-            android:id="@+id/slide_item_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/slide_item_home" />
-        <item
-            android:id="@+id/slide_item_class_group"
+            android:id="@+id/slide_item_my_classes"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/slide_item_class_group" />
+            android:title="کلاس های من" />
         <item
             android:id="@+id/slide_item_class_request"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/slide_item_class_request" />
-    </group>
+    <!--</group>-->
 
-    <item android:title=""
-        android:visible="true">
-        <menu>
+    <!--<item android:title=""-->
+        <!--android:visible="true">-->
+        <!--<menu>-->
             <item
                 android:id="@+id/slide_item_create_class"
                 android:icon="@drawable/ic_menu_share"
@@ -27,16 +23,16 @@
                 android:id="@+id/slide_item_requirements"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/slide_item_requirements"/>
-        </menu>
-    </item>
-    <item android:title="">
-        <menu>
+        <!--</menu>-->
+    <!--</item>-->
+    <!--<item android:title="">-->
+        <!--<menu>-->
             <item
                 android:id="@+id/slide_item_money"
                 android:title="@string/slide_item_money"/>
             <item
                 android:id="@+id/slide_item_share"
                 android:title="@string/slide_item_share"/>
-        </menu>
-    </item>
+        <!--</menu>-->
+    <!--</item>-->
 </menu>
