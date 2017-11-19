@@ -3,7 +3,6 @@ package com.touchteach.touchteach.Adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.View;
 
 import com.touchteach.touchteach.fragments.CMCreatedClassHolder;
 
@@ -12,6 +11,7 @@ import com.touchteach.touchteach.fragments.CMCreatedClassHolder;
  */
 
 public class ClassManagerAdapter extends FragmentPagerAdapter {
+
     public ClassManagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -23,7 +23,7 @@ public class ClassManagerAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                result = new CMCreatedClassHolder();
+//                result = new CMCreatedClassHolder();
                 break;
             case 1:
 //                result.getProgressBar().setVisibility(View.VISIBLE);

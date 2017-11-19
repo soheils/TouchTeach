@@ -4,13 +4,14 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
     <ProgressBar
-        android:id="@+id/frag_cm_crated_class_pb"
+        android:id="@+id/frag_cm_created_class_pb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="visible"
         tools:visibility="visible"/>
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/frag_cm_created_class_rcv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </FrameLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+
+        <ImageView
+            android:id="@+id/item_cm_class_created_im"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:background="#ccc"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/item_cm_class_created_pr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/item_cm_class_created_im"
+            app:layout_constraintTop_toTopOf="@id/item_cm_class_created_im"
+            app:layout_constraintRight_toRightOf="@id/item_cm_class_created_im"
+            app:layout_constraintBottom_toBottomOf="@id/item_cm_class_created_im"/>
+
+        <TextView
+            android:id="@+id/item_cm_class_created_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLength="14"
+            android:text="ریاضی 2"
+            android:textSize="20sp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_cm_class_created_im" />
+
+        <TextView
+            android:id="@+id/item_cm_class_created_tv_students"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            app:layout_constraintRight_toRightOf="@id/item_cm_class_created_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/item_cm_class_created_tv_title"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/item_cm_class_created_tv_dash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" / "
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/item_cm_class_created_tv_students"
+            app:layout_constraintRight_toLeftOf="@id/item_cm_class_created_tv_students"
+            app:layout_constraintTop_toTopOf="@id/item_cm_class_created_tv_students" />
+
+        <TextView
+            android:id="@+id/item_cm_class_created_tv_capacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            app:layout_constraintRight_toLeftOf="@id/item_cm_class_created_tv_dash"
+            app:layout_constraintTop_toTopOf="@id/item_cm_class_created_tv_dash"
+            app:layout_constraintBottom_toBottomOf="@id/item_cm_class_created_tv_dash"
+            tools:text="200" />
+
+        <ImageButton
+            android:id="@+id/item_cm_class_created_btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_delete_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/item_cm_class_created_tv_students"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_cm_class_created_tv_students" />
+
+        <ImageButton
+            android:id="@+id/item_cm_class_created_btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_edit_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/item_cm_class_created_btn_delete"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintLeft_toRightOf="@id/item_cm_class_created_btn_delete"
+            app:layout_constraintTop_toTopOf="@id/item_cm_class_created_btn_delete" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

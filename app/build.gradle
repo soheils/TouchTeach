@@ -27,6 +27,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile group: 'com.backendless', name: 'backendless', version: '4.+'
+    compile 'com.android.support:cardview-v7:23.3.+'
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support:preference-v7:26.0.0-alpha1'
     compile 'com.android.support:design:26.0.0-alpha1'

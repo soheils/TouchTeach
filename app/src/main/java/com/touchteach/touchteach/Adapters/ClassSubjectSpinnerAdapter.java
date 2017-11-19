@@ -68,7 +68,7 @@ public final class ClassSubjectSpinnerAdapter implements SpinnerAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View result = inflater.inflate(R.layout.create_class_spinner_view, viewGroup, false);
+        View result = inflater.inflate(R.layout.item_create_class_spinner, viewGroup, false);
         TextView subjectTv = result.findViewById(R.id.create_class_spinner_tv);
         subjectTv.setText(((Subject)getItem(i)).toString());
         return result;

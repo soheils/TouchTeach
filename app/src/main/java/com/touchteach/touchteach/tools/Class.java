@@ -6,8 +6,8 @@ import android.util.Log;
 
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessException;
 import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.LoadRelationsQueryBuilder;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -35,6 +35,7 @@ public class Class {
     //intent tag
     private final static String SAVE_NAME_TAG = "CLASS";
 
+    //database column
     //todo add backend less column const
     private final static String BACKENDLESS_TABLE_NAME = "Class";
     private final static String BACKENDLESS_TITLE_COLUMN = "title";
@@ -287,5 +288,34 @@ public class Class {
         for (int i=0 ; i<length ; i++)
             results.add(subject.get(i).getProperty());
         return results;
+    }
+
+    public static List<Class> getTeacherClasses(Users teacher){
+        //todo add another teacher
+        List<Class> resualt = new ArrayList<>();
+        LoadRelationsQueryBuilder<Map<String , Object>> queryBuilder = LoadRelationsQueryBuilder.ofMap();
+        queryBuilder.setRelationName(BACKENDLESS_CREATOR_COLUMN);
+
+        String teacherId = teacher.getUserId();
+
+
+
+//        StringBuilder query = new StringBuilder();
+//        query.append(BACKENDLESS_TABLE_NAME)
+//        Backendless.Data.of(BACKENDLESS_TABLE_NAME).loadRelations(teacherId, queryBuilder, new AsyncCallback<List<Map<String, Object>>>() {
+//            @Override
+//            public void handleResponse(List<Map<String, Object>> response) {
+//                for(Map Class : response) {
+//                    String tag = "TouchTeach";
+//                    Log.d(tag, Class.get(BACKENDLESS_TITLE_COLUMN).toString());
+//                }
+//            }
+//
+//            @Override
+//            public void handleFault(BackendlessFault fault) {
+//                //todo manage it
+//            }
+//        });
+        return null;
     }
 }
