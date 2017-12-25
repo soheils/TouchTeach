@@ -48,6 +48,7 @@ public class Class {
     private final static String BACKENDLESS_SUBJECT_COLUMN = "subject";
 
 
+
     //day tag
     public final static String SHANBE_DAY = "SH";
     public final static String EKSHANBE_DAY = "EK";
@@ -163,10 +164,13 @@ public class Class {
         Backendless.Data.of(BACKENDLESS_TABLE_NAME).save(hashMap, new AsyncCallback<Map>() {
             @Override
             public void handleResponse(Map response) {
-                Map parent = response;
-                Backendless.Data.of(BACKENDLESS_TABLE_NAME).setRelation(parent, BACKENDLESS_SUBJECT_COLUMN, saveClass.getMapSubjects(), new AsyncCallback<Integer>() {
+                final Map parent = response;
+                Backendless.Data.of(BACKENDLESS_TABLE_NAME).addRelation(parent, BACKENDLESS_SUBJECT_COLUMN, saveClass.getMapSubjects(), new AsyncCallback<Integer>() {
                     @Override
-                    public void handleResponse(Integer response) {}
+                    public void handleResponse(Integer response) {
+                        for (Subject subject: saveClass.subject)
+                            subject.addClasses(parent);
+                    }
                     @Override
                     public void handleFault(BackendlessFault fault) {
                         responder.handleFault(fault);
@@ -174,10 +178,13 @@ public class Class {
                 });
 
                 List array = new ArrayList();
-                array.add(Backendless.UserService.CurrentUser());
+                final Users currentUser = Users.sharePreferenceLoad(context);
+                array.add(currentUser);
                 Backendless.Data.of(BACKENDLESS_TABLE_NAME).setRelation(parent, BACKENDLESS_CREATOR_COLUMN, array, new AsyncCallback<Integer>() {
                     @Override
-                    public void handleResponse(Integer response) {}
+                    public void handleResponse(Integer response) {
+                        currentUser.addClasses(parent);
+                    }
 
                     @Override
                     public void handleFault(BackendlessFault fault) {
@@ -185,6 +192,7 @@ public class Class {
                     }
 
                 });
+
                 responder.handleResponse(response);
             }
 
@@ -290,32 +298,15 @@ public class Class {
         return results;
     }
 
-    public static List<Class> getTeacherClasses(Users teacher){
-        //todo add another teacher
-        List<Class> resualt = new ArrayList<>();
-        LoadRelationsQueryBuilder<Map<String , Object>> queryBuilder = LoadRelationsQueryBuilder.ofMap();
-        queryBuilder.setRelationName(BACKENDLESS_CREATOR_COLUMN);
-
-        String teacherId = teacher.getUserId();
-
-
-
-//        StringBuilder query = new StringBuilder();
-//        query.append(BACKENDLESS_TABLE_NAME)
-//        Backendless.Data.of(BACKENDLESS_TABLE_NAME).loadRelations(teacherId, queryBuilder, new AsyncCallback<List<Map<String, Object>>>() {
-//            @Override
-//            public void handleResponse(List<Map<String, Object>> response) {
-//                for(Map Class : response) {
-//                    String tag = "TouchTeach";
-//                    Log.d(tag, Class.get(BACKENDLESS_TITLE_COLUMN).toString());
-//                }
-//            }
-//
-//            @Override
-//            public void handleFault(BackendlessFault fault) {
-//                //todo manage it
-//            }
-//        });
-        return null;
+    public static Class parseToClass(Map<String ,Object> map){
+        Class result = new Class((String) map.get(BACKENDLESS_TITLE_COLUMN));
+        result.setDescription((String) map.get(BACKENDLESS_DESCRIPTION_COLUMN));
+        //todo add cost
+        result.setCost((Integer) map.get(BACKENDLESS_COST_COLUMN));
+        result.setCapacity((Integer) map.get(BACKENDLESS_CAPACITY_COLUMN));
+        result.timeTable = (String) map.get(BACKENDLESS_TIME_TABLE_COLUMN);
+        //todo add limit
+        //todo add subject
+        return result;
     }
 }

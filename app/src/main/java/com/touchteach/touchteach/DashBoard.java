@@ -54,18 +54,18 @@ public class DashBoard extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.dash_board_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        String currentUserObjectId = Backendless.UserService.loggedInUser();
-        Backendless.UserService.findById(currentUserObjectId, new AsyncCallback<BackendlessUser>() {
-            @Override
-            public void handleResponse(BackendlessUser response) {
-                Backendless.UserService.setCurrentUser( response );
-            }
-
-            @Override
-            public void handleFault(BackendlessFault fault) {
-
-            }
-        });
+//        String currentUserObjectId = Backendless.UserService.loggedInUser();
+//        Backendless.UserService.findById(currentUserObjectId, new AsyncCallback<BackendlessUser>() {
+//            @Override
+//            public void handleResponse(BackendlessUser response) {
+//                Backendless.UserService.setCurrentUser( response );
+//            }
+//
+//            @Override
+//            public void handleFault(BackendlessFault fault) {
+//
+//            }
+//        });
 //        NavigationView view = ((NavigationView) findViewById(R.id.nav_view));
 //        SliderMethods methods = new SliderMethods(view,StoredUser);
 //        methods.ExecuteSetterMethods(R.id.slide_tv_user_name,R.id.slide_item_home,R.id.slide_item_class_group,R.id.activity_request_classes);

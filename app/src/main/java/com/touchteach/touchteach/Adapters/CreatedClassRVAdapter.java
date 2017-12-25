@@ -1,23 +1,44 @@
 package com.touchteach.touchteach.Adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.touchteach.touchteach.R;
+import com.touchteach.touchteach.tools.Class;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by sazgar on 11/8/2017.
  */
 
 public class CreatedClassRVAdapter extends RecyclerView.Adapter<CreatedClassRVAdapter.CreatedClassRVHolder> {
+
+    private List<Class> mClasses = new ArrayList();
+    private int mSize = 0;
+
+    public void addClass(Class input){
+        mClasses.add(input);
+        mSize ++;
+    }
+
+    public void addClasses(Collection<? extends Class> classes){
+        mClasses.addAll(classes);
+        mSize += classes.size();
+    }
+
+    public void removeClasses(){
+        mClasses.clear();
+        mSize = 0;
+    }
 
     @Override
     public CreatedClassRVHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,17 +50,19 @@ public class CreatedClassRVAdapter extends RecyclerView.Adapter<CreatedClassRVAd
 
     @Override
     public void onBindViewHolder(CreatedClassRVHolder holder, int position) {
-        holder.capacity.setText("200");
+        Class mClass = mClasses.get(position);
+        holder.capacity.setText(mClass.getCapacity()+"");
+        holder.title.setText(mClass.getTitle());
         holder.students.setText(""+position);
         if (position%2 == 0)
             holder.progressBar.setVisibility(View.INVISIBLE);
 
-        holder.setIsRecyclable(false);
+//        holder.setIsRecyclable(false);
     }
 
     @Override
     public int getItemCount() {
-        return 110;
+        return mSize;
     }
 
     class CreatedClassRVHolder extends RecyclerView.ViewHolder{
