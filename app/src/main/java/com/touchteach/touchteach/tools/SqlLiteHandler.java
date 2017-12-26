@@ -19,7 +19,9 @@ public class SqlLiteHandler extends SQLiteOpenHelper {
     private static final String cash = "cash";
     private static final String email = "email";
     private static final String TableName2 = "ClassTable";
+    private static final String TableName3 = "SearchTable";
     private static final String ID2 = "id";
+    private static final String ID3 = "id";
     private static final String ClassName = "ClassName";
     private static final String Capacity = "Capacity";
     private static final String Instructor = "Instructor";
@@ -28,7 +30,6 @@ public class SqlLiteHandler extends SQLiteOpenHelper {
     private static final String Description = "Description";
     private static final String Bio = "Bio";
     private static final String Subject = "Subject";
-
 
 
     public SqlLiteHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -63,12 +64,25 @@ public class SqlLiteHandler extends SQLiteOpenHelper {
                 + ")";
         db.execSQL(CREATE_CLASS_TABLE);
     }
-
+    public void CreateSearchTable(SQLiteDatabase db){
+        String CREATE_CLASS_TABLE = "CREATE TABLE " + TableName3 + "("
+                + ID3 + " INTEGER PRIMARY KEY," + fname + " TEXT,"
+                + ClassName + " TEXT,"
+                + Capacity + " TEXT,"
+                + Subject + " TEXT,"
+                + Instructor + " TEXT,"
+                + Limitations + "TEXT,"
+                + Cost + "TEXT,"
+                + Description + "TEXT"
+                + ")";
+        db.execSQL(CREATE_CLASS_TABLE);
+    }
     // Upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TableName);
         db.execSQL("DROP TABLE IF EXISTS " + TableName2);
+        db.execSQL("DROP TABLE IF EXISTS " + TableName3);
         onCreate(db);
     }
     // Adding new contact
@@ -93,7 +107,20 @@ public class SqlLiteHandler extends SQLiteOpenHelper {
         values.put(Cost, newclass.getCost());
         values.put(Description, newclass.getDescription());
         // Inserting Row10
+        //TODO motmaeni in gharar naboode Tablename2 bashe?
         db.insert(TableName, null, values);
+        db.close();
+    }
+    public void addSearch(Class newclass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ClassName, newclass.getTitle() ); // Contact Name
+        values.put(Capacity, newclass.getCapacity());
+        values.put(Instructor, newclass.getInstructor());
+        values.put(Cost, newclass.getCost());
+        values.put(Description, newclass.getDescription());
+        // Inserting Row10
+        db.insert(TableName3, null, values);
         db.close();
     }
 

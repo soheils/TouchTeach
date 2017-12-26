@@ -13,6 +13,7 @@ import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.BackendlessDataQuery;
 import com.backendless.persistence.DataQueryBuilder;
 import com.touchteach.touchteach.tools.Class;
+import com.touchteach.touchteach.tools.SqlLiteHandler;
 
 import java.util.Collection;
 import java.util.List;
@@ -83,7 +84,9 @@ public class ClassSearch extends AppCompatActivity {
         Backendless.Data.of( Class.class ).find( queryBuilder, new AsyncCallback<List<Class>>() {
             @Override
             public void handleResponse(List<Class> response) {
-
+                for (Class result : response){
+                    s
+                }
             }
 
             @Override
