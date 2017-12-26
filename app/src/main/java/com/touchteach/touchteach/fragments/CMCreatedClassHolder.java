@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,25 +31,40 @@ import java.util.List;
  * Created by sazgar on 11/6/2017.
  */
 
-public class CMCreatedClassHolder extends Fragment{
+public class CMCreatedClassHolder extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     //todo complete
+    private SwipeRefreshLayout mRefreshLayout;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
-    @SuppressLint("StaticFieldLeak")
+    private CreatedClassRVAdapter mRvAdapter = new CreatedClassRVAdapter();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_class_manager_created_class, container, false);
         Context context = getContext();
-        progressBar = root.findViewById(R.id.frag_cm_created_class_pb);
-        progressBar.setVisibility(View.INVISIBLE);
+
+//        progressBar = root.findViewById(R.id.frag_cm_created_class_pb);
+//        progressBar.setVisibility(View.INVISIBLE);
 
         recyclerView = root.findViewById(R.id.frag_cm_created_class_rcv);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, Utiles.dpToPx(10, context), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mRvAdapter);
 
-        final CreatedClassRVAdapter adapter = new CreatedClassRVAdapter();
+        mRefreshLayout = root.findViewById(R.id.frag_cm_created_class_refresh_layout);
+        mRefreshLayout.setOnRefreshListener(this);
+
+        onRefresh();
+
+        return root;
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    @Override
+    public void onRefresh() {
+        mRefreshLayout.setRefreshing(true);
 
         new AsyncTask<Void, Void, List<Class>>() {
             @Override
@@ -58,21 +74,10 @@ public class CMCreatedClassHolder extends Fragment{
 
             @Override
             protected void onPostExecute(List<Class> classes) {
-                super.onPostExecute(classes);
-                adapter.addClasses(classes);
-                adapter.notifyDataSetChanged();
+                mRvAdapter.removeClasses();
+                mRvAdapter.addClasses(classes);
+                mRefreshLayout.setRefreshing(false);
             }
         }.execute();
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                adapter.addClasses(Users.sharePreferenceLoad(CMCreatedClassHolder.this.getContext()).CreatedClasses());
-//            }
-//        }).start();
-        recyclerView.setAdapter(adapter);
-        return root;
     }
-
-
-
 }

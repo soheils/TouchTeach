@@ -1,6 +1,7 @@
 package com.touchteach.touchteach.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.touchteach.touchteach.EditClassActivity;
 import com.touchteach.touchteach.R;
 import com.touchteach.touchteach.tools.Class;
 
@@ -28,15 +30,19 @@ public class CreatedClassRVAdapter extends RecyclerView.Adapter<CreatedClassRVAd
     public void addClass(Class input){
         mClasses.add(input);
         mSize ++;
+        this.notifyItemInserted(mSize);
     }
 
     public void addClasses(Collection<? extends Class> classes){
         mClasses.addAll(classes);
-        mSize += classes.size();
+        int classesSize = classes.size();
+        mSize += classesSize;
+        this.notifyItemRangeInserted(mSize - classesSize, classesSize);
     }
 
     public void removeClasses(){
         mClasses.clear();
+        this.notifyItemRangeRemoved(0, mSize);
         mSize = 0;
     }
 
@@ -57,7 +63,7 @@ public class CreatedClassRVAdapter extends RecyclerView.Adapter<CreatedClassRVAd
         if (position%2 == 0)
             holder.progressBar.setVisibility(View.INVISIBLE);
 
-//        holder.setIsRecyclable(false);
+        holder.setIsRecyclable(false);
     }
 
     @Override
@@ -65,7 +71,7 @@ public class CreatedClassRVAdapter extends RecyclerView.Adapter<CreatedClassRVAd
         return mSize;
     }
 
-    class CreatedClassRVHolder extends RecyclerView.ViewHolder{
+    class CreatedClassRVHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView capacity;
         TextView title;
         TextView students;
@@ -79,9 +85,18 @@ public class CreatedClassRVAdapter extends RecyclerView.Adapter<CreatedClassRVAd
             students = itemView.findViewById(R.id.item_cm_class_created_tv_students);
             image = itemView.findViewById(R.id.item_cm_class_created_im);
             progressBar = itemView.findViewById(R.id.item_cm_class_created_pr);
+            itemView.setOnClickListener(this);
         }
 
 
+        @Override
+        public void onClick(View view) {
+            Context mContext = view.getContext();
+            Class mClass = mClasses.get(getAdapterPosition());
+            Intent startActivity = new Intent(mContext, EditClassActivity.class);
+            Class.intentSave(mClass, startActivity);
+            mContext.startActivity(startActivity);
+        }
     }
 }
 
