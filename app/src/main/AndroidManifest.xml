@@ -56,6 +56,10 @@
         <activity
             android:name=".EditClassActivity"
             android:parentActivityName=".ClassManagerActivity" />
+        <activity
+            android:name=".RecentSearch"
+            android:label="@string/title_activity_recent_search"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
