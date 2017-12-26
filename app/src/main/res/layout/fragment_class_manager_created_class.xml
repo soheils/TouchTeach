@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/frag_cm_created_class_refresh_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
-    <ProgressBar
-        android:id="@+id/frag_cm_created_class_pb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="visible"
-        tools:visibility="visible"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/frag_cm_created_class_rcv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-</FrameLayout>
+
+    <!--<ProgressBar-->
+        <!--android:id="@+id/frag_cm_created_class_pb"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:visibility="visible"-->
+        <!--tools:visibility="visible"/>-->
+</android.support.v4.widget.SwipeRefreshLayout>

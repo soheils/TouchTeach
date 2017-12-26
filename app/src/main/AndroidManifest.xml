@@ -50,7 +50,12 @@
         <activity
             android:name=".CreateClassTimeTableActivity"
             android:parentActivityName=".CreateClassActivity" />
-        <activity android:name=".ClassManagerActivity" />
+        <activity
+            android:name=".ClassManagerActivity"
+            android:parentActivityName=".DashBoard" />
+        <activity
+            android:name=".EditClassActivity"
+            android:parentActivityName=".ClassManagerActivity" />
     </application>
 
 </manifest>

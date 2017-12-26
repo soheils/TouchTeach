@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.touchteach.touchteach.EditClassActivity"
+    android:layoutDirection="rtl">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/detail_class_GL_labels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.74" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/detail_class_GL_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.36" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ظرفیت"
+        app:layout_constraintLeft_toRightOf="@id/detail_class_GL_labels"/>
+
+    <TextView
+        android:id="@+id/detail_class_tv_capacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="12345"
+        app:layout_constraintRight_toLeftOf="@id/detail_class_GL_data"/>
+</android.support.constraint.ConstraintLayout>
